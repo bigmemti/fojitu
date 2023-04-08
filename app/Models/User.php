@@ -48,7 +48,7 @@ class User extends Authenticatable
     protected function isAdmin(): Attribute
     {
         return Attribute::make(
-            get: fn ($value, $attributes) => $attributes['type'] === self::ADMIN_TYPE,
+            get: fn ($value, $attributes) => $attributes['type'] == self::ADMIN_TYPE,
         );
     }
 
