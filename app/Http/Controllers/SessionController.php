@@ -14,7 +14,7 @@ class SessionController extends Controller
      */
     public function create(Course $course)
     {
-        return view('session.create');
+        return view('session.create', ['course' => $course]);
     }
 
     /**
@@ -24,7 +24,7 @@ class SessionController extends Controller
     {
         $course->sessions()->create($request->validated());
 
-        return to_route('session.index')->withSuccess(__('Session created successfully.'));
+        return to_route('course.show', ['course' => $course])->withSuccess(__('Session created successfully.'));
     }
 
     /**
@@ -50,7 +50,7 @@ class SessionController extends Controller
     {
         $session->update($request->validated());
 
-        return to_route('session.index')->withSuccess(__('Session updated successfully.'));
+        return to_route('course.show', ['course' => $session->course])->withSuccess(__('Session updated successfully.'));
     }
 
     /**
@@ -60,6 +60,6 @@ class SessionController extends Controller
     {
         $session->delete();
 
-        return to_route('session.index')->withSuccess(__('Session deleted successfully.'));
+        return to_route('course.show', ['course' => $session->course])->withSuccess(__('Session deleted successfully.'));
     }
 }

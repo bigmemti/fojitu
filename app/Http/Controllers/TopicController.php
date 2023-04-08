@@ -14,7 +14,7 @@ class TopicController extends Controller
      */
     public function create(Session $session)
     {
-        return view('topic.create');
+        return view('topic.create', ['session' => $session]);
     }
 
     /**
@@ -24,7 +24,7 @@ class TopicController extends Controller
     {
         $session->topics()->create($request->validated());
 
-        return to_route('topic.index')->withSuccess(__('Topic created successfully.'));
+        return to_route('session.show', ['session' => $session])->withSuccess(__('Topic created successfully.'));
     }
 
     /**
@@ -50,7 +50,7 @@ class TopicController extends Controller
     {
         $topic->update($request->validated());
 
-        return to_route('topic.index')->withSuccess(__('Topic updated successfully.'));
+        return to_route('session.show', ['session' => $topic->session])->withSuccess(__('Topic updated successfully.'));
     }
 
     /**
@@ -60,6 +60,6 @@ class TopicController extends Controller
     {
         $topic->delete();
 
-        return to_route('topic.index')->withSuccess(__('Topic deleted successfully.'));
+        return to_route('session.show', ['session' => $topic->session])->withSuccess(__('Topic deleted successfully.'));
     }
 }
