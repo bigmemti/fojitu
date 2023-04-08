@@ -13,4 +13,9 @@ class Topic extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function session()
+    {
+        return $this->belongsTo(Session::class);
+    }
 }

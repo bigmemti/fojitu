@@ -13,4 +13,14 @@ class Session extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function topics()
+    {
+        return $this->hasMany(Topic::class);
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }
