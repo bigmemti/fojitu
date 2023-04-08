@@ -15,9 +15,11 @@
                         </p>
                     </div>
                     <h3>{{__('Topics')}} :</h3>
-                    <div>
-                        <a href="{{route('session.topic.create', ['session' => $session])}}">+</a>
-                    </div>
+                    @can('create', App\Models\Topic::class)
+                        <div>
+                            <a href="{{route('session.topic.create', ['session' => $session])}}">+</a>
+                        </div>
+                    @endcan
                     <table>
                         <thead>
                             <th>{{__('Name')}}</th>
@@ -28,13 +30,16 @@
                                 <tr>
                                     <td>{{$topic->name}}</td>
                                     <td>
-                                        <a href="{{route('topic.show',['topic' => $topic])}}">show</a>
-                                        <a href="{{route('topic.edit',['topic' => $topic])}}">edit</a>
-                                        <form action="{{route('topic.destroy', ['topic' => $topic])}}" method="post">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit">delete</button>
-                                        </form>
+                                        @can('update', $topic)
+                                            <a href="{{route('topic.edit',['topic' => $topic])}}">edit</a>
+                                        @endcan
+                                        @can('delete', $topic)
+                                            <form action="{{route('topic.destroy', ['topic' => $topic])}}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit">delete</button>
+                                            </form>
+                                        @endcan
                                     </td>
                                 </tr>
                             @empty

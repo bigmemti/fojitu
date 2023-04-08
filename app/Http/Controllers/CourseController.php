@@ -13,6 +13,8 @@ class CourseController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Course::class);
+
         $courses = Course::all();
 
         return view('course.index', ['courses' => $courses]);
@@ -23,6 +25,8 @@ class CourseController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Course::class);
+
         return view('course.create');
     }
 
@@ -41,6 +45,8 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
+        $this->authorize('view', $course);
+
         return view('course.show', ['course' => $course]);
     }
 
@@ -49,6 +55,8 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
+        $this->authorize('update', $course);
+
         return view('course.edit', ['course' => $course]);
     }
 
@@ -67,6 +75,8 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
+        $this->authorize('delete', $course);
+
         $course->delete();
 
         return to_route('course.index')->withSuccess(__('Course deleted successfully.'));

@@ -13,7 +13,7 @@ class SessionPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class SessionPolicy
      */
     public function view(User $user, Session $session): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class SessionPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return auth()->user()->is_admin;
     }
 
     /**
@@ -37,7 +37,7 @@ class SessionPolicy
      */
     public function update(User $user, Session $session): bool
     {
-        //
+        return auth()->user()->is_admin;
     }
 
     /**
@@ -45,7 +45,7 @@ class SessionPolicy
      */
     public function delete(User $user, Session $session): bool
     {
-        //
+        return auth()->user()->is_admin;
     }
 
     /**
@@ -53,7 +53,7 @@ class SessionPolicy
      */
     public function restore(User $user, Session $session): bool
     {
-        //
+        return auth()->user()->is_admin;
     }
 
     /**
@@ -61,6 +61,6 @@ class SessionPolicy
      */
     public function forceDelete(User $user, Session $session): bool
     {
-        //
+        return auth()->user()->is_admin;
     }
 }

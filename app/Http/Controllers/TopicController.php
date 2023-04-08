@@ -14,6 +14,8 @@ class TopicController extends Controller
      */
     public function create(Session $session)
     {
+        $this->authorize('create', Topic::class);
+
         return view('topic.create', ['session' => $session]);
     }
 
@@ -32,6 +34,8 @@ class TopicController extends Controller
      */
     public function show(Topic $topic)
     {
+        $this->authorize('view', $topic);
+
         return view('topic.show', ['topic' => $topic]);
     }
 
@@ -40,6 +44,8 @@ class TopicController extends Controller
      */
     public function edit(Topic $topic)
     {
+        $this->authorize('update', $topic);
+
         return view('topic.edit', ['topic' => $topic]);
     }
 
@@ -58,6 +64,8 @@ class TopicController extends Controller
      */
     public function destroy(Topic $topic)
     {
+        $this->authorize('delete', $topic);
+
         $topic->delete();
 
         return to_route('session.show', ['session' => $topic->session])->withSuccess(__('Topic deleted successfully.'));

@@ -14,6 +14,8 @@ class SessionController extends Controller
      */
     public function create(Course $course)
     {
+        $this->authorize('create', Session::class);
+
         return view('session.create', ['course' => $course]);
     }
 
@@ -32,6 +34,8 @@ class SessionController extends Controller
      */
     public function show(Session $session)
     {
+        $this->authorize('view', $session);
+
         return view('session.show', ['session' => $session]);
     }
 
@@ -40,6 +44,8 @@ class SessionController extends Controller
      */
     public function edit(Session $session)
     {
+        $this->authorize('update', $session);
+
         return view('session.edit', ['session' => $session]);
     }
 
@@ -58,6 +64,8 @@ class SessionController extends Controller
      */
     public function destroy(Session $session)
     {
+        $this->authorize('delete', $session);
+
         $session->delete();
 
         return to_route('course.show', ['course' => $session->course])->withSuccess(__('Session deleted successfully.'));
