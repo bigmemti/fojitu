@@ -9,19 +9,11 @@ use App\Http\Requests\UpdateSessionRequest;
 class SessionController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('session.create');
     }
 
     /**
@@ -29,7 +21,9 @@ class SessionController extends Controller
      */
     public function store(StoreSessionRequest $request)
     {
-        //
+        // Session::create($request->validated());
+
+        return to_route('session.index')->withSuccess(__('Session created successfully.'));
     }
 
     /**
@@ -37,7 +31,7 @@ class SessionController extends Controller
      */
     public function show(Session $session)
     {
-        //
+        return view('session.show', ['session' => $session]);
     }
 
     /**
@@ -45,7 +39,7 @@ class SessionController extends Controller
      */
     public function edit(Session $session)
     {
-        //
+        return view('session.edit', ['session' => $session]);
     }
 
     /**
@@ -53,7 +47,9 @@ class SessionController extends Controller
      */
     public function update(UpdateSessionRequest $request, Session $session)
     {
-        //
+        $session->update($request->validated());
+
+        return to_route('session.index')->withSuccess(__('Session updated successfully.'));
     }
 
     /**
@@ -61,6 +57,8 @@ class SessionController extends Controller
      */
     public function destroy(Session $session)
     {
-        //
+        $session->delete();
+
+        return to_route('session.index')->withSuccess(__('Session deleted successfully.'));
     }
 }

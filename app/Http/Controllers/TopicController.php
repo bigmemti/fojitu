@@ -9,19 +9,11 @@ use App\Http\Requests\UpdateTopicRequest;
 class TopicController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('topic.create');
     }
 
     /**
@@ -29,7 +21,9 @@ class TopicController extends Controller
      */
     public function store(StoreTopicRequest $request)
     {
-        //
+        // Topic::create($request->validated());
+
+        return to_route('topic.index')->withSuccess(__('Topic created successfully.'));
     }
 
     /**
@@ -37,7 +31,7 @@ class TopicController extends Controller
      */
     public function show(Topic $topic)
     {
-        //
+        return view('topic.show', ['topic' => $topic]);
     }
 
     /**
@@ -45,7 +39,7 @@ class TopicController extends Controller
      */
     public function edit(Topic $topic)
     {
-        //
+        return view('topic.edit', ['topic' => $topic]);
     }
 
     /**
@@ -53,7 +47,9 @@ class TopicController extends Controller
      */
     public function update(UpdateTopicRequest $request, Topic $topic)
     {
-        //
+        $topic->update($request->validated());
+
+        return to_route('topic.index')->withSuccess(__('Topic updated successfully.'));
     }
 
     /**
@@ -61,6 +57,8 @@ class TopicController extends Controller
      */
     public function destroy(Topic $topic)
     {
-        //
+        $topic->delete();
+
+        return to_route('topic.index')->withSuccess(__('Topic deleted successfully.'));
     }
 }
