@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Topic;
+use App\Models\Session;
 use App\Http\Requests\StoreTopicRequest;
 use App\Http\Requests\UpdateTopicRequest;
 
@@ -11,7 +12,7 @@ class TopicController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Session $session)
     {
         return view('topic.create');
     }
@@ -19,9 +20,9 @@ class TopicController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTopicRequest $request)
+    public function store(StoreTopicRequest $request, Session $session)
     {
-        // Topic::create($request->validated());
+        $session->topics()->create($request->validated());
 
         return to_route('topic.index')->withSuccess(__('Topic created successfully.'));
     }

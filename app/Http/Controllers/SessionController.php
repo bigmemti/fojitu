@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Session;
 use App\Http\Requests\StoreSessionRequest;
 use App\Http\Requests\UpdateSessionRequest;
@@ -11,7 +12,7 @@ class SessionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Course $course)
     {
         return view('session.create');
     }
@@ -19,9 +20,9 @@ class SessionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSessionRequest $request)
+    public function store(StoreSessionRequest $request, Course $course)
     {
-        // Session::create($request->validated());
+        $course->sessions()->create($request->validated());
 
         return to_route('session.index')->withSuccess(__('Session created successfully.'));
     }
