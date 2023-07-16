@@ -54,4 +54,9 @@ class User extends Authenticatable
 
     const ADMIN_TYPE = 0;
     const USER_TYPE = 1;
+
+    public function teacher()
+    {
+        return $this->hasOne(Teacher::class);
+    }
 }
