@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Teacher;
 use App\Http\Requests\StoreTeacherRequest;
 use App\Http\Requests\UpdateTeacherRequest;
@@ -27,9 +28,11 @@ class TeacherController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTeacherRequest $request)
+    public function store(StoreTeacherRequest $request, User $user)
     {
-        //
+        $user->teacher()->create();
+
+        return to_route('dashboard')->withSuccess(__('your request has sent.'));
     }
 
     /**
