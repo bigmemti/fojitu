@@ -73,7 +73,7 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('teacher.course.index',['teacher' => auth()->user()->teacher])" :active="request()->routeIs('teacher.course.index',['teacher' => auth()->user()->teacher])">
+            <x-responsive-nav-link :href="auth()->user()->teacher ? route('teacher.course.index',['teacher' => auth()->user()->teacher]) : route('course.index')" :active="request()->routeIs('teacher.course.index',['teacher' => auth()->user()->teacher])">
                 {{ __('Course') }}
             </x-responsive-nav-link>
         </div>

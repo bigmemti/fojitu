@@ -11,9 +11,6 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @can('create', App\Models\Course::class)
                         <div class="my-2">
-                            <a  class="bg-green-500 hover:bg-green-400">
-
-                            </a>
                             <x-button :href="route('teacher.course.create', ['teacher' => $teacher])" type="create">
                                 <i class="fa fa-plus text-sm"></i> {{ __('Create new courese.') }}
                             </x-button>
