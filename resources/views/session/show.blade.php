@@ -24,7 +24,7 @@
                             <a href="{{route('session.topic.create', ['session' => $session])}}">+</a>
                         </div>
                     @endcan
-                    
+
                     <table>
                         <thead>
                             <th>{{__('Name')}}</th>
@@ -40,6 +40,45 @@
                                         @endcan
                                         @can('delete', $topic)
                                             <form action="{{route('topic.destroy', ['topic' => $topic])}}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit">delete</button>
+                                            </form>
+                                        @endcan
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="2">
+                                        {{__('There is nothing.')}}
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                    <h3>{{__('Homeworks')}} :</h3>
+
+                    @can('create', App\Models\Homework::class)
+                        <div>
+                            <a href="{{route('session.homework.create', ['session' => $session])}}">+</a>
+                        </div>
+                    @endcan
+
+                    <table>
+                        <thead>
+                            <th>{{__('Title')}}</th>
+                            <th>{{__('Actions')}}</th>
+                        </thead>
+                        <tbody>
+                            @forelse ($session->homeworks as $homework)
+                                <tr>
+                                    <td>{{$homework->title}}</td>
+                                    <td>
+                                        @can('update', $homework)
+                                            <a href="{{route('homework.edit',['homework' => $homework])}}">edit</a>
+                                        @endcan
+                                        @can('delete', $homework)
+                                            <form action="{{route('homework.destroy', ['homework' => $homework])}}" method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit">delete</button>
