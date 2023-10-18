@@ -19,6 +19,11 @@ class Session extends Model
         return $this->hasMany(Topic::class);
     }
 
+    public function homeworks()
+    {
+        return $this->hasMany(HomeWork::class);
+    }
+
     public function course()
     {
         return $this->belongsTo(Course::class);
