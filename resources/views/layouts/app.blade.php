@@ -32,5 +32,26 @@
                 {{ $slot }}
             </main>
         </div>
+        @if (session('success'))
+            <script>
+                document.addEventListener('alpine:init', () => {
+                    Toast.fire({
+                        icon: 'success',
+                        title: @js(session('success'))
+                    })
+                })
+            </script>
+        @endif
+
+        @if (session('error'))
+            <script>
+                document.addEventListener('alpine:init', () => {
+                    Toast.fire({
+                        icon: 'error',
+                        title: @js(session('error'))
+                    })
+                })
+            </script>
+        @endif
     </body>
 </html>
