@@ -18,4 +18,8 @@ class Course extends Model
     {
         return $this->hasMany(Session::class);
     }
+
+    function teacher() {
+        return $this->belongsTo(Teacher::class);
+    }
 }
