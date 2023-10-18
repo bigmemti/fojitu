@@ -40,7 +40,7 @@ class HomeWorkController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(HomeWork $homeWork)
+    public function show(HomeWork $homework)
     {
         //
     }
@@ -48,24 +48,31 @@ class HomeWorkController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(HomeWork $homeWork)
+    public function edit(HomeWork $homework)
     {
-        //
+        return view("homework.edit", [
+            "homework" => $homework,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateHomeWorkRequest $request, HomeWork $homeWork)
+    public function update(UpdateHomeWorkRequest $request, HomeWork $homework)
     {
-        //
+        $homework->update($request->validated());
+
+        return to_route('session.show', ['session' => $homework->session_id])->withSuccess(__('Homework updated successfully'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(HomeWork $homeWork)
+    public function destroy(HomeWork $homework)
     {
-        //
+        $session_id = $homework->session_id;
+        $homework->delete();
+
+        return to_route('session.show', ['session' => $session_id])->withSuccess(__('Homework updated successfully'));
     }
 }

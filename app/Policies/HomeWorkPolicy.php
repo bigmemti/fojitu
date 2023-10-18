@@ -45,7 +45,7 @@ class HomeWorkPolicy
      */
     public function delete(User $user, HomeWork $homeWork): bool
     {
-        return true;
+        return auth()->user()->teacher !== null;
     }
 
     /**
