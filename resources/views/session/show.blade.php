@@ -8,18 +8,23 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <div>
-                        <p>
-                            {{__('Sessions name')}} : {{$session->name}}
-                        </p>
-                    </div>
+                <div class="flex flex-col  gap-4 p-6 text-gray-900 dark:text-gray-100">
+                    <h2 class="text-xl font-bold">
+                        {{__('Cource name')}} : <a class="font-normal" href="{{ route('course.show', ['course' => $session->course]) }}">{{ $session->course->name }}</a>
+                    </h2>
+
+                    <h3 class="text-lg font-bold">
+                        {{__('Session name')}} : <span class="font-normal">{{$session->name}}</span>
+                    </h3>
+
                     <h3>{{__('Topics')}} :</h3>
+
                     @can('create', App\Models\Topic::class)
                         <div>
                             <a href="{{route('session.topic.create', ['session' => $session])}}">+</a>
                         </div>
                     @endcan
+                    
                     <table>
                         <thead>
                             <th>{{__('Name')}}</th>

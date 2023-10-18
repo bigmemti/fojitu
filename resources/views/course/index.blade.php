@@ -10,36 +10,58 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @can('create', App\Models\Course::class)
-                        <div>
-                            <a href="{{route('course.create')}}">+</a>
+                        <div class="my-2">
+                            <a  class="bg-green-500 hover:bg-green-400">
+
+                            </a>
+                            <x-button :href="route('teacher.course.create', ['teacher' => $teacher])" type="create">
+                                <i class="fa fa-plus text-sm"></i> {{ __('Create new courese.') }}
+                            </x-button>
                         </div>
                     @endcan
-                    <table>
+                    <table class="w-full mt-8 table-bordered">
                         <thead>
-                            <th>{{__('Name')}}</th>
-                            <th>{{__('Actions')}}</th>
+                            <tr>
+                                <th>{{__('Name')}}</th>
+                                <th>{{__('Actions')}}</th>
+                            </tr>
                         </thead>
                         <tbody>
                             @forelse ($courses as $course)
                                 <tr>
-                                    <td>{{$course->name}}</td>
-                                    <td>
-                                        <a href="{{route('course.show',['course' => $course])}}">show</a>
+                                    <td class="text-center">{{$course->name}}</td>
+                                    <td class="py-4 text-center">
+                                        <x-button :href="route('course.show',['course' => $course])" type="info"><i class="fa-light fa-eye"></i></x-button>
                                         @can('update', $course)
-                                            <a href="{{route('course.edit',['course' => $course])}}">edit</a>
+                                            <x-button :href="route('course.edit',['course' => $course])" type="edit"><i class="fa-light fa-pen"></i></x-button>
                                         @endcan
                                         @can('delete', $course)
-                                            <form action="{{route('course.destroy', ['course' => $course])}}" method="post">
+                                            <form x-data @submit.prevent="
+                                            Swal.fire({
+                                                title: '{!!__("Are you sure?")!!}',
+                                                text: '{!!__("You can\'t restore it!")!!}',
+                                                icon: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#d33',
+                                                cancelButtonColor: '#666',
+                                                cancelButtonText:'{!!__("Cancel")!!}',
+                                                confirmButtonText: '{!!__("Yes, delete it!")!!}'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    $event.target.submit()
+                                                }
+                                            })
+                                            " action="{{route('course.destroy', ['course' => $course])}}" method="post" class="inline-block bg-red-500 hover:bg-red-400 hover:text-white hover:cursor-pointer dark:bg-red-800 dark:hover:bg-red-700 rounded-xl p-2 px-3">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="submit">delete</button>
+                                                <button type="submit"><i class="fa-light fa-trash"></i></button>
                                             </form>
                                         @endcan
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="2">
+                                    <td class="text-center py-2" colspan="2">
                                         {{__('There is nothing.')}}
                                     </td>
                                 </tr>
