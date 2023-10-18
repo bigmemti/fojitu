@@ -1,3 +1,14 @@
+@import url('./fontawesome-all.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.table-bordered th, .table-bordered td{
+    @apply border border-black;
+}
+th{
+    @apply text-xl font-bold py-2;
+}
+td{
+    @apply text-lg font-semibold;
+}
