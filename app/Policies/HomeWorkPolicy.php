@@ -13,7 +13,7 @@ class HomeWorkPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class HomeWorkPolicy
      */
     public function view(User $user, HomeWork $homeWork): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class HomeWorkPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class HomeWorkPolicy
      */
     public function update(User $user, HomeWork $homeWork): bool
     {
-        //
+        return auth()->user()->teacher !== null;
     }
 
     /**
@@ -45,7 +45,7 @@ class HomeWorkPolicy
      */
     public function delete(User $user, HomeWork $homeWork): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class HomeWorkPolicy
      */
     public function restore(User $user, HomeWork $homeWork): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -61,6 +61,6 @@ class HomeWorkPolicy
      */
     public function forceDelete(User $user, HomeWork $homeWork): bool
     {
-        //
+        return true;
     }
 }
