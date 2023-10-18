@@ -6,6 +6,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\CourseListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('course', CourseController::class);
+    Route::resource('teacher.course', CourseController::class)->shallow();
+    Route::get('/course', [CourseListController::class, 'index'])->name('course.index');
     Route::resource('course.session', SessionController::class,['except' => ['index']])->shallow();
     Route::resource('session.topic', TopicController::class,['except' => ['index']])->shallow();
 
