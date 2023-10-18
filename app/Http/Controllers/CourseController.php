@@ -5,39 +5,45 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use App\Models\Teacher;
 
 class CourseController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Teacher $teacher)
     {
         $this->authorize('viewAny', Course::class);
 
-        $courses = Course::all();
+        $courses = $teacher->courses;
 
-        return view('course.index', ['courses' => $courses]);
+        return view('course.index', [
+            'courses' => $courses,
+            'teacher' => $teacher
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Teacher $teacher)
     {
         $this->authorize('create', Course::class);
 
-        return view('course.create');
+        return view('course.create', [
+            'teacher' => $teacher
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCourseRequest $request)
+    public function store(StoreCourseRequest $request, Teacher $teacher)
     {
-        Course::create($request->validated());
+        $teacher->courses()->create($request->validated());
 
-        return to_route('course.index')->withSuccess(__('Course created successfully.'));
+        return to_route('teacher.course.index', ['teacher' => $teacher])->withSuccess(__('Course created successfully.'));
     }
 
     /**
@@ -67,7 +73,7 @@ class CourseController extends Controller
     {
         $course->update($request->validated());
 
-        return to_route('course.index')->withSuccess(__('Course updated successfully.'));
+        return to_route('teacher.course.index', ['teacher' => $course->teacher])->withSuccess(__('Course updated successfully.'));
     }
 
     /**
@@ -79,6 +85,6 @@ class CourseController extends Controller
 
         $course->delete();
 
-        return to_route('course.index')->withSuccess(__('Course deleted successfully.'));
+        return to_route('teacher.course.index', ['teacher' => $course->teacher])->withSuccess(__('Course deleted successfully.'));
     }
 }
