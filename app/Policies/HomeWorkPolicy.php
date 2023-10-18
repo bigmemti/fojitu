@@ -29,7 +29,7 @@ class HomeWorkPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return auth()->user()->teacher !== null;
     }
 
     /**
