@@ -15,6 +15,9 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('university.index')" :active="request()->routeIs('university.index')">
+                        {{ __('University') }}
+                    </x-nav-link>
                     <x-nav-link :href="auth()->user()->teacher ? route('teacher.course.index',['teacher' => auth()->user()->teacher]) : route('course.index')" :active="auth()->user()->teacher ? request()->routeIs('teacher.course.index',['teacher' => auth()->user()->teacher]) : request()->routeIs('course.index')">
                         {{ __('Course') }}
                     </x-nav-link>
@@ -76,6 +79,9 @@
             {{-- todo : multiple course link --}}
             <x-responsive-nav-link :href="auth()->user()->teacher ? route('teacher.course.index',['teacher' => auth()->user()->teacher]) : route('course.index')" :active="auth()->user()->teacher ? request()->routeIs('teacher.course.index',['teacher' => auth()->user()->teacher]) : request()->routeIs('course.index')">
                 {{ __('Course') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('university.index')" :active="request()->routeIs('university.index')">
+                {{ __('University') }}
             </x-responsive-nav-link>
         </div>
 

@@ -8,7 +8,9 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\CourseListController;
 use App\Http\Controllers\HomeWorkController;
+use App\Http\Controllers\MajorController;
 use App\Http\Controllers\PracticeController;
+use App\Http\Controllers\UniversityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +44,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('topic.practice', PracticeController::class,['except' => ['index']])->shallow();
 
     Route::resource('user.teacher', TeacherController::class)->shallow();
+
+
+    Route::resource('university', UniversityController::class);
+    Route::resource('major', MajorController::class);
 });
 
 require __DIR__.'/auth.php';

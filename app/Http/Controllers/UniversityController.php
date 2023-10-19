@@ -13,7 +13,9 @@ class UniversityController extends Controller
      */
     public function index()
     {
-        //
+        return view("university.index", [
+            "universities"=> University::all()
+        ]);
     }
 
     /**
@@ -21,7 +23,7 @@ class UniversityController extends Controller
      */
     public function create()
     {
-        //
+        return view("university.create");
     }
 
     /**
@@ -29,7 +31,9 @@ class UniversityController extends Controller
      */
     public function store(StoreUniversityRequest $request)
     {
-        //
+        University::create($request->validated());
+
+        return to_route("university.index")->withSuccess(__('University created successfully'));
     }
 
     /**
@@ -37,7 +41,9 @@ class UniversityController extends Controller
      */
     public function show(University $university)
     {
-        //
+        return view('university.show', [
+            'university'=> $university
+        ]);
     }
 
     /**
@@ -45,7 +51,9 @@ class UniversityController extends Controller
      */
     public function edit(University $university)
     {
-        //
+        return view('university.edit', [
+            'university'=> $university
+        ]);
     }
 
     /**
@@ -53,7 +61,9 @@ class UniversityController extends Controller
      */
     public function update(UpdateUniversityRequest $request, University $university)
     {
-        //
+        $university->update($request->validated());
+
+        return to_route('university.index')->withSuccess(__('University updated successfully'));
     }
 
     /**
@@ -61,6 +71,8 @@ class UniversityController extends Controller
      */
     public function destroy(University $university)
     {
-        //
+        $university->delete();
+
+        return to_route('university.index')->withSuccess(__('University deleted successfully'));
     }
 }
