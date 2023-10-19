@@ -13,7 +13,9 @@ class MajorController extends Controller
      */
     public function index()
     {
-        //
+        return view("major.index", [
+            "majors"=> Major::all()
+        ]);
     }
 
     /**
@@ -21,7 +23,7 @@ class MajorController extends Controller
      */
     public function create()
     {
-        //
+        return view("major.create");
     }
 
     /**
@@ -29,7 +31,9 @@ class MajorController extends Controller
      */
     public function store(StoreMajorRequest $request)
     {
-        //
+        Major::create($request->validated());
+
+        return to_route("major.index")->withSuccess(__('Major created successfully'));
     }
 
     /**
@@ -37,7 +41,9 @@ class MajorController extends Controller
      */
     public function show(Major $major)
     {
-        //
+        return view('major.show', [
+            'major'=> $major
+        ]);
     }
 
     /**
@@ -45,7 +51,9 @@ class MajorController extends Controller
      */
     public function edit(Major $major)
     {
-        //
+        return view('major.edit', [
+            'major'=> $major
+        ]);
     }
 
     /**
@@ -53,7 +61,9 @@ class MajorController extends Controller
      */
     public function update(UpdateMajorRequest $request, Major $major)
     {
-        //
+        $major->update($request->validated());
+
+        return to_route('major.index')->withSuccess(__('Major updated successfully'));
     }
 
     /**
@@ -61,6 +71,8 @@ class MajorController extends Controller
      */
     public function destroy(Major $major)
     {
-        //
+        $major->delete();
+
+        return to_route('major.index')->withSuccess(__('Major deleted successfully'));
     }
 }
