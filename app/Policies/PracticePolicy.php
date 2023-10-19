@@ -13,7 +13,7 @@ class PracticePolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return auth()->user()->teacher !== null;
     }
 
     /**
@@ -21,7 +21,7 @@ class PracticePolicy
      */
     public function view(User $user, Practice $practice): bool
     {
-        //
+        return auth()->user()->teacher !== null;
     }
 
     /**
@@ -29,7 +29,7 @@ class PracticePolicy
      */
     public function create(User $user): bool
     {
-        //
+        return auth()->user()->teacher !== null;
     }
 
     /**
@@ -37,7 +37,7 @@ class PracticePolicy
      */
     public function update(User $user, Practice $practice): bool
     {
-        //
+        return auth()->user()->teacher !== null;
     }
 
     /**
@@ -45,7 +45,7 @@ class PracticePolicy
      */
     public function delete(User $user, Practice $practice): bool
     {
-        //
+        return auth()->user()->teacher !== null;
     }
 
     /**
@@ -53,7 +53,7 @@ class PracticePolicy
      */
     public function restore(User $user, Practice $practice): bool
     {
-        //
+        return auth()->user()->teacher !== null;
     }
 
     /**
@@ -61,6 +61,6 @@ class PracticePolicy
      */
     public function forceDelete(User $user, Practice $practice): bool
     {
-        //
+        return auth()->user()->teacher !== null;
     }
 }

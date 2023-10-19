@@ -18,4 +18,8 @@ class Topic extends Model
     {
         return $this->belongsTo(Session::class);
     }
+
+    public function practices(){
+        return $this->hasMany(Practice::class);
+    }
 }

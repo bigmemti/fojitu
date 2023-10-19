@@ -35,6 +35,7 @@
                                 <tr>
                                     <td>{{$topic->name}}</td>
                                     <td>
+                                        <a href="{{ route('topic.show', ['topic' => $topic]) }}">show</a>
                                         @can('update', $topic)
                                             <a href="{{route('topic.edit',['topic' => $topic])}}">edit</a>
                                         @endcan

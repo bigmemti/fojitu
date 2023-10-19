@@ -8,6 +8,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\CourseListController;
 use App\Http\Controllers\HomeWorkController;
+use App\Http\Controllers\PracticeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('course.session', SessionController::class,['except' => ['index']])->shallow();
     Route::resource('session.topic', TopicController::class,['except' => ['index']])->shallow();
     Route::resource('session.homework', HomeWorkController::class,['except' => ['index']])->shallow();
+    Route::resource('topic.practice', PracticeController::class,['except' => ['index']])->shallow();
 
     Route::resource('user.teacher', TeacherController::class)->shallow();
 });

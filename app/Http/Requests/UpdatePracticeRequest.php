@@ -11,7 +11,7 @@ class UpdatePracticeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->user()->teacher !== null;
     }
 
     /**
@@ -22,7 +22,9 @@ class UpdatePracticeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|min:4|max:255',
+            'body'=> 'required|min:10|max:2048',
+            'answer'=> 'nullable|min:10|max:2048',
         ];
     }
 }
