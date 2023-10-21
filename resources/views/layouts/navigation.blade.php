@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('major.index')" :active="request()->routeIs('major.index')">
                         {{ __('Major') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('curriculum.index')" :active="request()->routeIs('curriculum.index')">
+                        {{ __('Curriculum') }}
+                    </x-nav-link>
                     <x-nav-link :href="auth()->user()->teacher ? route('teacher.course.index',['teacher' => auth()->user()->teacher]) : route('course.index')" :active="auth()->user()->teacher ? request()->routeIs('teacher.course.index',['teacher' => auth()->user()->teacher]) : request()->routeIs('course.index')">
                         {{ __('Course') }}
                     </x-nav-link>
@@ -84,6 +87,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('major.index')" :active="request()->routeIs('major.index')">
                 {{ __('Major') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('curriculum.index')" :active="request()->routeIs('curriculum.index')">
+                {{ __('Curriculum') }}
             </x-responsive-nav-link>
             {{-- todo : multiple course link --}}
             <x-responsive-nav-link :href="auth()->user()->teacher ? route('teacher.course.index',['teacher' => auth()->user()->teacher]) : route('course.index')" :active="auth()->user()->teacher ? request()->routeIs('teacher.course.index',['teacher' => auth()->user()->teacher]) : request()->routeIs('course.index')">

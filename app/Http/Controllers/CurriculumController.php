@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Curriculum;
 use App\Http\Requests\StoreCurriculumRequest;
 use App\Http\Requests\UpdateCurriculumRequest;
+use App\Models\Major;
+use App\Models\University;
 
 class CurriculumController extends Controller
 {
@@ -13,7 +15,9 @@ class CurriculumController extends Controller
      */
     public function index()
     {
-        //
+        return view("curriculum.index", [
+            "curricula"=> Curriculum::all(),
+        ]);
     }
 
     /**
@@ -21,7 +25,10 @@ class CurriculumController extends Controller
      */
     public function create()
     {
-        //
+        return view("curriculum.create",[
+            "universities"=> University::all(),
+            "majors"=> Major::all(),
+        ]);
     }
 
     /**
@@ -29,7 +36,9 @@ class CurriculumController extends Controller
      */
     public function store(StoreCurriculumRequest $request)
     {
-        //
+        Curriculum::create($request->validated());
+
+        return to_route("curriculum.index")->withSuccess(__('Curriculum created successfully'));
     }
 
     /**
@@ -37,7 +46,9 @@ class CurriculumController extends Controller
      */
     public function show(Curriculum $curriculum)
     {
-        //
+        return view('curriculum.show', [
+            'curriculum'=> $curriculum
+        ]);
     }
 
     /**
@@ -45,7 +56,11 @@ class CurriculumController extends Controller
      */
     public function edit(Curriculum $curriculum)
     {
-        //
+        return view('curriculum.edit', [
+            'curriculum'=> $curriculum,
+            "universities"=> University::all(),
+            "majors"=> Major::all(),
+        ]);
     }
 
     /**
@@ -53,7 +68,9 @@ class CurriculumController extends Controller
      */
     public function update(UpdateCurriculumRequest $request, Curriculum $curriculum)
     {
-        //
+        $curriculum->update($request->validated());
+
+        return to_route('curriculum.index')->withSuccess(__('Curriculum updated successfully'));
     }
 
     /**
@@ -61,6 +78,8 @@ class CurriculumController extends Controller
      */
     public function destroy(Curriculum $curriculum)
     {
-        //
+        $curriculum->delete();
+
+        return to_route('curriculum.index')->withSuccess(__('Curriculum deleted successfully'));
     }
 }
