@@ -11,7 +11,7 @@ class StoreStudentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'curriculum_id' => 'required|integer|exists:curricula,id',
+            'student_id' => 'required|integer|unique:students,student_id,'. auth()->user()->id .',user_id',
         ];
     }
 }

@@ -29,7 +29,11 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request)
     {
-        //
+        $user = auth()->user();
+
+        $user->student? $user->student->update($request->validated()) : $user->student()->create($request->validated());
+
+        return to_route('profile.edit')->withSuccess(__('Information updated successfully.'));
     }
 
     /**
