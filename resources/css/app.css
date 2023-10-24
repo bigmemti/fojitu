@@ -12,3 +12,23 @@ th{
 td{
     @apply text-lg font-semibold;
 }
+
+.swal2-popup{
+    @apply dark:!bg-gray-900;
+}
+
+.swal2-popup *{
+    @apply dark:!text-white;
+}
+
+.swal2-timer-progress-bar{
+    @apply dark:bg-gray-500;
+}
+
+.swal2-popup.swal2-toast{
+    @apply !ring-0
+}
+
+.swal2-title{
+    @apply !mt-2;
+}
