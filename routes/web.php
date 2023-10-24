@@ -6,6 +6,7 @@ use App\Http\Controllers\TopicController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\HomeWorkController;
 use App\Http\Controllers\PracticeController;
@@ -45,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('topic.practice', PracticeController::class,['except' => ['index']])->shallow();
 
     Route::resource('user.teacher', TeacherController::class)->shallow();
+    Route::resource('user.student', StudentController::class)->shallow();
 
 
     Route::resource('university', UniversityController::class);
