@@ -10,8 +10,10 @@ class TeacherSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run($users): void
     {
-        //
+        $users->each(function ($user) {
+            $user->teacher()->create();
+        });
     }
 }

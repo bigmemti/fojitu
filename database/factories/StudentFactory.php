@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Curriculum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,8 @@ class StudentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'curriculum_id' => Curriculum::inRandomOrder()->first(),
+            'student_id' => rand(10000000, 999999999999)
         ];
     }
 }
