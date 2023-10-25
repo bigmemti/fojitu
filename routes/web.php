@@ -12,6 +12,7 @@ use App\Http\Controllers\HomeWorkController;
 use App\Http\Controllers\PracticeController;
 use App\Http\Controllers\CourseListController;
 use App\Http\Controllers\CurriculumController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\UniversityController;
 
 /*
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('teacher.course', CourseController::class)->shallow();
     Route::get('/course', [CourseListController::class, 'index'])->name('course.index');
+    Route::get('curriculum/{curriculum}/course', [CourseListController::class, 'curriculum'])->name('curriculum.course.index');
     Route::resource('course.session', SessionController::class,['except' => ['index']])->shallow();
     Route::resource('session.topic', TopicController::class,['except' => ['index']])->shallow();
     Route::resource('session.homework', HomeWorkController::class,['except' => ['index']])->shallow();
@@ -52,6 +54,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('university', UniversityController::class);
     Route::resource('major', MajorController::class);
     Route::resource('curriculum', CurriculumController::class);
+
+    Route::resource('course.member', MemberController::class)->shallow();
+
 });
 
 require __DIR__.'/auth.php';

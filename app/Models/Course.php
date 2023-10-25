@@ -22,4 +22,8 @@ class Course extends Model
     function teacher() {
         return $this->belongsTo(Teacher::class);
     }
+
+    function curriculum() {
+        return $this->belongsTo(Curriculum::class);
+    }
 }

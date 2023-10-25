@@ -13,4 +13,13 @@ class Student extends Model
         'curriculum_id',
         'student_id'
     ];
+
+    public function curriculum(){
+        return $this->belongsTo(Curriculum::class);
+    }
+
+
+    public function courses(){
+        return $this->belongsToMany(Course::class,Member::class);
+    }
 }

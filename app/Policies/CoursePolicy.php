@@ -17,11 +17,35 @@ class CoursePolicy
     }
 
     /**
+     * Determine whether the user can view teaching models.
+     */
+    public function viewTeachingCourse(User $user): bool
+    {
+        return auth()->user()->teacher !== null;
+    }
+
+    /**
+     * Determine whether the user can view studying models.
+     */
+    public function viewStudyingCourse(User $user): bool
+    {
+        return auth()->user()->student !== null;
+    }
+
+    /**
      * Determine whether the user can view the model.
      */
     public function view(User $user, Course $course): bool
     {
-        return true;
+        return ($course->teacher_id === $user->id || $user->isMemberOf($course));
+    }
+
+    /**
+     * Determine whether the user can view the model.
+     */
+    public function membership(User $user, Course $course): bool
+    {
+        return (!($course->teacher_id === $user->id || $user->isMemberOf($course)) && $user->student->curriculum_id === $course->curriculum_id);
     }
 
     /**

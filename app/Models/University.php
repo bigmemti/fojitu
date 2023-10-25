@@ -12,4 +12,8 @@ class University extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function majors(){
+        return $this->belongsToMany(Major::class,Curriculum::class);
+    }
 }

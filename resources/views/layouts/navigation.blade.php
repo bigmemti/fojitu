@@ -16,17 +16,29 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('university.index')" :active="request()->routeIs('university.index')">
-                        {{ __('University') }}
+                        {{ __('Universities') }}
                     </x-nav-link>
                     <x-nav-link :href="route('major.index')" :active="request()->routeIs('major.index')">
-                        {{ __('Major') }}
+                        {{ __('Majors') }}
                     </x-nav-link>
                     <x-nav-link :href="route('curriculum.index')" :active="request()->routeIs('curriculum.index')">
-                        {{ __('Curriculum') }}
+                        {{ __('Curricula') }}
                     </x-nav-link>
-                    <x-nav-link :href="auth()->user()->teacher ? route('teacher.course.index',['teacher' => auth()->user()->teacher]) : route('course.index')" :active="auth()->user()->teacher ? request()->routeIs('teacher.course.index',['teacher' => auth()->user()->teacher]) : request()->routeIs('course.index')">
-                        {{ __('Course') }}
-                    </x-nav-link>
+                    @can('viewTeachingCourse', App\Model\Course::class)
+                        <x-nav-link :href="route('teacher.course.index',['teacher' => auth()->user()->teacher])" :active="request()->routeIs('teacher.course.index',['teacher' => auth()->user()->teacher])">
+                            {{ __('Teaching Courses') }}
+                        </x-nav-link>
+                    @endcan
+                    @can('viewStudyingCourse', App\Model\Course::class)
+                        <x-nav-link :href="route('curriculum.course.index',['curriculum' => auth()->user()->student->curriculum])" :active="request()->routeIs('curriculum.course.index',['curriculum' => auth()->user()->student->curriculum])">
+                            {{ __('Studying Courses') }}
+                        </x-nav-link>
+                    @endcan
+                    @can('viewAny', App\Model\Course::class)
+                        <x-nav-link :href="route('course.index')" :active="request()->routeIs('course.index')">
+                            {{ __('Courses') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
@@ -83,18 +95,29 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('university.index')" :active="request()->routeIs('university.index')">
-                {{ __('University') }}
+                {{ __('Universities') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('major.index')" :active="request()->routeIs('major.index')">
-                {{ __('Major') }}
+                {{ __('Majors') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('curriculum.index')" :active="request()->routeIs('curriculum.index')">
-                {{ __('Curriculum') }}
+                {{ __('Curricula') }}
             </x-responsive-nav-link>
-            {{-- todo : multiple course link --}}
-            <x-responsive-nav-link :href="auth()->user()->teacher ? route('teacher.course.index',['teacher' => auth()->user()->teacher]) : route('course.index')" :active="auth()->user()->teacher ? request()->routeIs('teacher.course.index',['teacher' => auth()->user()->teacher]) : request()->routeIs('course.index')">
-                {{ __('Course') }}
-            </x-responsive-nav-link>
+            @can('viewTeachingCourse', App\Model\Course::class)
+                <x-responsive-nav-link :href="route('teacher.course.index',['teacher' => auth()->user()->teacher])" :active="request()->routeIs('teacher.course.index',['teacher' => auth()->user()->teacher])">
+                    {{ __('Teaching Courses') }}
+                </x-responsive-nav-link>
+            @endcan
+            @can('viewStudyingCourse', App\Model\Course::class)
+                <x-responsive-nav-link :href="route('curriculum.course.index',['curriculum' => auth()->user()->student->curriculum])" :active="request()->routeIs('curriculum.course.index',['curriculum' => auth()->user()->student->curriculum])">
+                    {{ __('Studying Courses') }}
+                </x-responsive-nav-link>
+            @endcan
+            @can('viewAny', App\Model\Course::class)
+                <x-responsive-nav-link :href="route('course.index')" :active="request()->routeIs('course.index')">
+                    {{ __('Courses') }}
+                </x-responsive-nav-link>
+            @endcan
         </div>
 
         <!-- Responsive Settings Options -->

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Member;
 use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
+use App\Models\Course;
 
 class MemberController extends Controller
 {
@@ -27,9 +28,11 @@ class MemberController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreMemberRequest $request)
+    public function store(StoreMemberRequest $request, Course $course)
     {
-        //
+        auth()->user()->student->courses()->attach([$course->id]);
+
+        return to_route('curriculum.course.index', ['curriculum' => $course->curriculum])->withSuccess(__('You have joined successfully.'));
     }
 
     /**

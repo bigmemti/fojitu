@@ -64,4 +64,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(Student::class);
     }
+
+    public function isMemberOf(Course $course) : bool{
+        return self::where('id', $this->id)->whereRelation('student.courses','courses.id',$course->id)->count() !== 0;
+    }
 }
