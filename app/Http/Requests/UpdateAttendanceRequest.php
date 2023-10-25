@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Attendance;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateAttendanceRequest extends FormRequest
@@ -11,7 +13,7 @@ class UpdateAttendanceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,7 @@ class UpdateAttendanceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'status' => ['required', 'integer', Rule::in(array_keys(Attendance::statuses))],
         ];
     }
 }

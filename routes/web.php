@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\TopicController;
@@ -56,7 +57,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('curriculum', CurriculumController::class);
 
     Route::resource('course.member', MemberController::class)->shallow();
-
+    Route::resource('session.attendance', AttendanceController::class)->shallow();
 });
 
 require __DIR__.'/auth.php';

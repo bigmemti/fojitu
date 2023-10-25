@@ -32,3 +32,16 @@ td{
 .swal2-title{
     @apply !mt-2;
 }
+
+tr.Absent{
+    @apply bg-red-500  bg-opacity-40 dark:bg-red-800 dark:bg-opacity-40;
+}
+
+tr.Present{
+    @apply bg-green-500  bg-opacity-40 dark:bg-green-800 dark:bg-opacity-40;
+}
+
+tr.Excused{
+    @apply bg-yellow-500  bg-opacity-40 dark:bg-yellow-800 dark:bg-opacity-40;
+}
+

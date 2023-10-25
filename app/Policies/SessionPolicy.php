@@ -29,7 +29,7 @@ class SessionPolicy
      */
     public function create(User $user): bool
     {
-        return auth()->user()->is_admin;
+        return auth()->user()->is_admin || auth()->user()->teacher;
     }
 
     /**

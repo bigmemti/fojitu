@@ -17,6 +17,12 @@
                         {{__('Session name')}} : <span class="font-normal">{{$session->name}}</span>
                     </h3>
 
+                    <div>
+                        <x-button :href="route('session.attendance.index', ['session' => $session])" type="info">
+                            <i class="fa-thin fa-user"></i>
+                        </x-button>
+                    </div>
+
                     <h3>{{__('Topics')}} :</h3>
 
                     @can('create', App\Models\Topic::class)

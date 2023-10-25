@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Session;
+use App\Models\Member;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -13,7 +15,12 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Member::class)->constrained();
+            $table->foreignIdFor(Session::class)->constrained();
+            $table->unsignedTinyInteger('status');
             $table->timestamps();
+
+            $table->unique(['member_id','session_id'], 'MSI');
         });
     }
 

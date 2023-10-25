@@ -37,7 +37,7 @@ class CoursePolicy
      */
     public function view(User $user, Course $course): bool
     {
-        return ($course->teacher_id === $user->id || $user->isMemberOf($course));
+        return ($course->teacher->user_id === $user->id || $user->isMemberOf($course));
     }
 
     /**
@@ -45,7 +45,7 @@ class CoursePolicy
      */
     public function membership(User $user, Course $course): bool
     {
-        return (!($course->teacher_id === $user->id || $user->isMemberOf($course)) && $user->student->curriculum_id === $course->curriculum_id);
+        return (!($course->teacher->user_id === $user->id || $user->isMemberOf($course)) && $user->student->curriculum_id === $course->curriculum_id);
     }
 
     /**
@@ -53,7 +53,7 @@ class CoursePolicy
      */
     public function create(User $user): bool
     {
-        return auth()->user()->is_admin && auth()->user()->teacher;
+        return auth()->user()->is_admin || auth()->user()->teacher;
     }
 
     /**
