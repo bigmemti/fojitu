@@ -14,7 +14,7 @@ class CourseController extends Controller
      */
     public function index(Teacher $teacher)
     {
-        $this->authorize('viewAny', Course::class);
+        $this->authorize('viewTeachingCourse', Course::class);
 
         $courses = $teacher->courses;
 
