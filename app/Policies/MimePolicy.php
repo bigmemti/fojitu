@@ -13,7 +13,7 @@ class MimePolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class MimePolicy
      */
     public function view(User $user, Mime $mime): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class MimePolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class MimePolicy
      */
     public function update(User $user, Mime $mime): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -45,7 +45,7 @@ class MimePolicy
      */
     public function delete(User $user, Mime $mime): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class MimePolicy
      */
     public function restore(User $user, Mime $mime): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -61,6 +61,6 @@ class MimePolicy
      */
     public function forceDelete(User $user, Mime $mime): bool
     {
-        //
+        return true;
     }
 }

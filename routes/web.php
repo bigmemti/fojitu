@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MimeController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\TopicController;
@@ -44,6 +45,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('university', UniversityController::class);
     Route::resource('major', MajorController::class);
     Route::resource('type', TypeController::class);
+    Route::resource('type.mime', MimeController::class)->shallow();
     Route::resource('curriculum', CurriculumController::class);
 
     Route::resource('teacher.course', CourseController::class)->shallow();

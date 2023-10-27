@@ -32,7 +32,34 @@
                                 @forelse ($type->mimes as $mime)
                                     <tr>
                                         <td class="text-center">{{$mime->name}}</td>
-                                        <td class="text-center py-4"></td>
+                                        <td class="py-4 text-center">
+                                            <x-button :href="route('mime.show',['mime' => $mime])" type="info"><i class="fa-light fa-eye"></i></x-button>
+                                            @can('update', $mime)
+                                                <x-button :href="route('mime.edit',['mime' => $mime])" type="edit"><i class="fa-light fa-pen"></i></x-button>
+                                            @endcan
+                                            @can('delete', $mime)
+                                                <form x-data @submit.prevent="
+                                                Swal.fire({
+                                                    title: '{!!__("Are you sure?")!!}',
+                                                    text: '{!!__("You can\'t restore it!")!!}',
+                                                    icon: 'warning',
+                                                    showCancelButton: true,
+                                                    confirmButtonColor: '#d33',
+                                                    cancelButtonColor: '#666',
+                                                    cancelButtonText:'{!!__("Cancel")!!}',
+                                                    confirmButtonText: '{!!__("Yes, delete it!")!!}'
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        $event.target.submit()
+                                                    }
+                                                })
+                                                " action="{{route('mime.destroy', ['mime' => $mime])}}" method="post" class="inline-block bg-red-500 hover:bg-red-400 hover:text-white hover:cursor-pointer dark:bg-red-800 dark:hover:bg-red-700 rounded-xl p-2 px-3">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit"><i class="fa-light fa-trash"></i></button>
+                                                </form>
+                                            @endcan
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>

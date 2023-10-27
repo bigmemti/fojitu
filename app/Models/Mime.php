@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Mime extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'type_id',
+    ];
+
+    public function type(){
+        return $this->belongsTo(Type::class);
+    }
 }
