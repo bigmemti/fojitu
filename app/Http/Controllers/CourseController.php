@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use App\Models\Curriculum;
 use App\Models\Teacher;
 
 class CourseController extends Controller
@@ -32,7 +33,8 @@ class CourseController extends Controller
         $this->authorize('create', Course::class);
 
         return view('course.create', [
-            'teacher' => $teacher
+            'teacher' => $teacher,
+            'curricula' => Curriculum::all()
         ]);
     }
 
@@ -53,7 +55,9 @@ class CourseController extends Controller
     {
         $this->authorize('view', $course);
 
-        return view('course.show', ['course' => $course]);
+        return view('course.show', [
+            'course' => $course->load(['sessions', 'students.user', 'teacher.user', 'curriculum' => fn($query) => $query->with(['university', 'major'])])
+        ]);
     }
 
     /**

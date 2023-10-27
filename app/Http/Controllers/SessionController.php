@@ -36,7 +36,9 @@ class SessionController extends Controller
     {
         $this->authorize('view', $session);
 
-        return view('session.show', ['session' => $session]);
+        return view('session.show', [
+            'session' => $session->load(['topics.practices', 'homeworks'])
+        ]);
     }
 
     /**

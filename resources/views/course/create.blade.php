@@ -16,6 +16,18 @@
                         @error('name')
                             <span>{{$message}}</span>
                         @enderror
+                        <div>
+                            <x-input-label for="curriculum_id" :value="__('Curriculum')" />
+                            <select name="curriculum_id" id="curriculum_id" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                                <option value="">{{ __('Choose one.') }}</option>
+                                @forelse ($curricula as $curriculum)
+                                    <option @selected(old('curriculum_id')) value="{{ $curriculum->id }}">{{ $curriculum->university->name }} - {{ $curriculum->major->name }}</option>
+                                @empty
+
+                                @endforelse
+                            </select>
+                            <x-input-error :messages="$errors->get('curriculum_id')" class="mt-2" />
+                        </div>
                         <button type="submit" class="self-end mx-2 px-3 py-2 bg-green-500 hover:bg-green-400 dark:bg-green-800 dark:hover:bg-green-700 rounded-xl">submit</button>
                     </form>
                 </div>

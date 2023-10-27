@@ -11,7 +11,7 @@ class StoreTopicRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return  auth()->user()->is_admin;
+        return  auth()->user()->teacher !== null;
     }
 
     /**

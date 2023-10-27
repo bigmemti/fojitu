@@ -12,6 +12,7 @@ class Course extends Model
 
     protected $fillable = [
         'name',
+        'curriculum_id'
     ];
 
     public function sessions()

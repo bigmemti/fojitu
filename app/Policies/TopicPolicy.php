@@ -29,7 +29,7 @@ class TopicPolicy
      */
     public function create(User $user): bool
     {
-        return auth()->user()->is_admin;
+        return auth()->user()->teacher !== null;
     }
 
     /**
@@ -37,7 +37,7 @@ class TopicPolicy
      */
     public function update(User $user, Topic $topic): bool
     {
-        return auth()->user()->is_admin;
+        return auth()->user()->teacher !== null;
     }
 
     /**
@@ -45,7 +45,7 @@ class TopicPolicy
      */
     public function delete(User $user, Topic $topic): bool
     {
-        return auth()->user()->is_admin;
+        return auth()->user()->teacher !== null;
     }
 
     /**
@@ -53,7 +53,7 @@ class TopicPolicy
      */
     public function restore(User $user, Topic $topic): bool
     {
-        return auth()->user()->is_admin;
+        return auth()->user()->teacher !== null;
     }
 
     /**
@@ -61,6 +61,6 @@ class TopicPolicy
      */
     public function forceDelete(User $user, Topic $topic): bool
     {
-        return auth()->user()->is_admin;
+        return auth()->user()->teacher !== null;
     }
 }

@@ -25,6 +25,14 @@ class CoursePolicy
     }
 
     /**
+     * Determine whether the user can view teaching models.
+     */
+    public function viewCourseMember(User $user, Course $course): bool
+    {
+        return auth()->user()->teacher !== null;
+    }
+
+    /**
      * Determine whether the user can view studying models.
      */
     public function viewStudyingCourse(User $user): bool
@@ -53,7 +61,7 @@ class CoursePolicy
      */
     public function create(User $user): bool
     {
-        return auth()->user()->is_admin || auth()->user()->teacher;
+        return auth()->user()->teacher !== null;
     }
 
     /**
@@ -61,7 +69,7 @@ class CoursePolicy
      */
     public function update(User $user, Course $course): bool
     {
-        return auth()->user()->is_admin;
+        return auth()->user()->teacher !== null;
     }
 
     /**
@@ -69,7 +77,7 @@ class CoursePolicy
      */
     public function delete(User $user, Course $course): bool
     {
-        return auth()->user()->is_admin;
+        return auth()->user()->teacher !== null;
     }
 
     /**
@@ -77,7 +85,7 @@ class CoursePolicy
      */
     public function restore(User $user, Course $course): bool
     {
-        return auth()->user()->is_admin;
+        return auth()->user()->teacher !== null;
     }
 
     /**
@@ -85,6 +93,6 @@ class CoursePolicy
      */
     public function forceDelete(User $user, Course $course): bool
     {
-        return auth()->user()->is_admin;
+        return auth()->user()->teacher !== null;
     }
 }

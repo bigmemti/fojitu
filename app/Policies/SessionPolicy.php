@@ -25,6 +25,14 @@ class SessionPolicy
     }
 
     /**
+     * Determine whether the user can view the model.
+     */
+    public function viewAttendances(User $user, Session $session): bool
+    {
+        return auth()->user()->teacher !== null;
+    }
+
+    /**
      * Determine whether the user can create models.
      */
     public function create(User $user): bool
@@ -37,7 +45,7 @@ class SessionPolicy
      */
     public function update(User $user, Session $session): bool
     {
-        return auth()->user()->is_admin;
+        return auth()->user()->is_admin || auth()->user()->teacher;
     }
 
     /**
@@ -45,7 +53,7 @@ class SessionPolicy
      */
     public function delete(User $user, Session $session): bool
     {
-        return auth()->user()->is_admin;
+        return auth()->user()->is_admin || auth()->user()->teacher;
     }
 
     /**
