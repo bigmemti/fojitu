@@ -13,7 +13,9 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        return view('type.index',[
+            'types' => Type::all(),
+        ]);
     }
 
     /**
@@ -21,7 +23,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('type.create');
     }
 
     /**
@@ -29,7 +31,9 @@ class TypeController extends Controller
      */
     public function store(StoreTypeRequest $request)
     {
-        //
+        Type::create($request->validated());
+
+        return to_route('type.index')->withSuccess(__('Type created successfully.'));
     }
 
     /**
@@ -37,7 +41,9 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
+        return view('type.show',[
+            'type' => $type,
+        ]);
     }
 
     /**
@@ -45,7 +51,9 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        return view('type.edit',[
+            'type'=> $type,
+        ]);
     }
 
     /**
@@ -53,7 +61,9 @@ class TypeController extends Controller
      */
     public function update(UpdateTypeRequest $request, Type $type)
     {
-        //
+        $type->update($request->validated());
+
+        return to_route('type.index')->withSuccess(__('Type updated successfully.'));
     }
 
     /**
@@ -61,6 +71,12 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        if($type->isDeletable()){
+            $type->delete();
+
+            return to_route('type.index')->withSuccess(__('Type deleted successfully.'));
+        }
+
+        return to_route('type.index')->withErrors(__('Type can\'t be deleted.'));
     }
 }

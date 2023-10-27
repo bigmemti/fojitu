@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('curriculum.index')" :active="request()->routeIs('curriculum.index')">
                         {{ __('Curricula') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('type.index')" :active="request()->routeIs('type.index')">
+                        {{ __('Type') }}
+                    </x-nav-link>
                     @can('viewTeachingCourse', App\Model\Course::class)
                         <x-nav-link :href="route('teacher.course.index',['teacher' => auth()->user()->teacher])" :active="request()->routeIs('teacher.course.index',['teacher' => auth()->user()->teacher])">
                             {{ __('Teaching Courses') }}
@@ -102,6 +105,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('curriculum.index')" :active="request()->routeIs('curriculum.index')">
                 {{ __('Curricula') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('type.index')" :active="request()->routeIs('type.index')">
+                {{ __('Type') }}
             </x-responsive-nav-link>
             @can('viewTeachingCourse', App\Model\Course::class)
                 <x-responsive-nav-link :href="route('teacher.course.index',['teacher' => auth()->user()->teacher])" :active="request()->routeIs('teacher.course.index',['teacher' => auth()->user()->teacher])">

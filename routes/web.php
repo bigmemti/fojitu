@@ -1,19 +1,20 @@
 <?php
 
-use App\Http\Controllers\AttendanceController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TypeController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\HomeWorkController;
 use App\Http\Controllers\PracticeController;
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CourseListController;
 use App\Http\Controllers\CurriculumController;
-use App\Http\Controllers\MemberController;
 use App\Http\Controllers\UniversityController;
 
 /*
@@ -42,6 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('university', UniversityController::class);
     Route::resource('major', MajorController::class);
+    Route::resource('type', TypeController::class);
     Route::resource('curriculum', CurriculumController::class);
 
     Route::resource('teacher.course', CourseController::class)->shallow();
