@@ -22,6 +22,7 @@
                         <thead>
                             <tr>
                                 <th>{{__('Name')}}</th>
+                                <th>{{__('Teacher')}}</th>
                                 <th>{{__('Actions')}}</th>
                             </tr>
                         </thead>
@@ -29,7 +30,8 @@
                             @forelse ($courses as $course)
                                 <tr>
                                     <td class="text-center">{{$course->name}}</td>
-                                    <td class="py-4 text-center">
+                                    <td class="text-center">{{$course->teacher->user->name}}</td>
+                                    <td class="py-4 text-center space-y-4 md:space-y-0">
                                         @can('view', $course)
                                             <x-button :href="route('course.show',['course' => $course])" type="info"><i class="fa-light fa-eye"></i></x-button>
                                         @endcan
