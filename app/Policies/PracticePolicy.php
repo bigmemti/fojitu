@@ -8,12 +8,12 @@ use Illuminate\Auth\Access\Response;
 
 class PracticePolicy
 {
-    /**
+   /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return auth()->user()->teacher !== null;
+        return $user->hasPermission('view-list-practice');
     }
 
     /**
@@ -21,7 +21,7 @@ class PracticePolicy
      */
     public function view(User $user, Practice $practice): bool
     {
-        return auth()->user()->teacher !== null;
+        return $user->hasPermission('view-practice');
     }
 
     /**
@@ -29,7 +29,7 @@ class PracticePolicy
      */
     public function create(User $user): bool
     {
-        return auth()->user()->teacher !== null;
+        return $user->hasPermission('create-practice');
     }
 
     /**
@@ -37,7 +37,7 @@ class PracticePolicy
      */
     public function update(User $user, Practice $practice): bool
     {
-        return auth()->user()->teacher !== null;
+        return $user->hasPermission('update-practice');
     }
 
     /**
@@ -45,7 +45,7 @@ class PracticePolicy
      */
     public function delete(User $user, Practice $practice): bool
     {
-        return auth()->user()->teacher !== null;
+        return $user->hasPermission('delete-practice');
     }
 
     /**
@@ -53,7 +53,7 @@ class PracticePolicy
      */
     public function restore(User $user, Practice $practice): bool
     {
-        return auth()->user()->teacher !== null;
+        return $user->hasPermission('restore-practice');
     }
 
     /**
@@ -61,6 +61,6 @@ class PracticePolicy
      */
     public function forceDelete(User $user, Practice $practice): bool
     {
-        return auth()->user()->teacher !== null;
+        return $user->hasPermission('force-delete-practice');
     }
 }

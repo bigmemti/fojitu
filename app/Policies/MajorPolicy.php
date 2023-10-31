@@ -13,7 +13,7 @@ class MajorPolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return $user->hasPermission('view-list-major');
     }
 
     /**
@@ -21,7 +21,7 @@ class MajorPolicy
      */
     public function view(User $user, Major $major): bool
     {
-        return true;
+        return $user->hasPermission('view-major');
     }
 
     /**
@@ -29,7 +29,7 @@ class MajorPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return $user->hasPermission('create-major');
     }
 
     /**
@@ -37,7 +37,7 @@ class MajorPolicy
      */
     public function update(User $user, Major $major): bool
     {
-        return true;
+        return $user->hasPermission('update-major');
     }
 
     /**
@@ -45,7 +45,7 @@ class MajorPolicy
      */
     public function delete(User $user, Major $major): bool
     {
-        return true;
+        return $user->hasPermission('delete-major');
     }
 
     /**
@@ -53,7 +53,7 @@ class MajorPolicy
      */
     public function restore(User $user, Major $major): bool
     {
-        return true;
+        return $user->hasPermission('restore-major');
     }
 
     /**
@@ -61,6 +61,6 @@ class MajorPolicy
      */
     public function forceDelete(User $user, Major $major): bool
     {
-        return true;
+        return $user->hasPermission('force-delete-major');
     }
 }

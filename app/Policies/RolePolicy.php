@@ -2,26 +2,26 @@
 
 namespace App\Policies;
 
-use App\Models\University;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class UniversityPolicy
+class RolePolicy
 {
-    /**
+       /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return $user->hasPermission('view-list-role');
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, University $university): bool
+    public function view(User $user, Role $role): bool
     {
-        return true;
+        return $user->hasPermission('view-role');
     }
 
     /**
@@ -29,38 +29,38 @@ class UniversityPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return $user->hasPermission('create-role');
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, University $university): bool
+    public function update(User $user, Role $role): bool
     {
-        return true;
+        return $user->hasPermission('update-role');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, University $university): bool
+    public function delete(User $user, Role $role): bool
     {
-        return true;
+        return $user->hasPermission('delete-role');
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, University $university): bool
+    public function restore(User $user, Role $role): bool
     {
-        return true;
+        return $user->hasPermission('restore-role');
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, University $university): bool
+    public function forceDelete(User $user, Role $role): bool
     {
-        return true;
+        return $user->hasPermission('force-delete-role');
     }
 }

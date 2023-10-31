@@ -2,18 +2,19 @@
 
 namespace App\Policies;
 
+use App\Models\HomeWork;
 use App\Models\Submission;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
 class SubmissionPolicy
 {
-    /**
+   /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->hasPermission('view-list-submission');
     }
 
     /**
@@ -21,7 +22,7 @@ class SubmissionPolicy
      */
     public function view(User $user, Submission $submission): bool
     {
-        //
+        return $user->hasPermission('view-submission');
     }
 
     /**
@@ -29,7 +30,7 @@ class SubmissionPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->hasPermission('create-submission');
     }
 
     /**
@@ -37,7 +38,7 @@ class SubmissionPolicy
      */
     public function update(User $user, Submission $submission): bool
     {
-        //
+        return $user->hasPermission('update-submission');
     }
 
     /**
@@ -45,7 +46,7 @@ class SubmissionPolicy
      */
     public function delete(User $user, Submission $submission): bool
     {
-        //
+        return $user->hasPermission('delete-submission');
     }
 
     /**
@@ -53,7 +54,7 @@ class SubmissionPolicy
      */
     public function restore(User $user, Submission $submission): bool
     {
-        //
+        return $user->hasPermission('restore-submission');
     }
 
     /**
@@ -61,6 +62,6 @@ class SubmissionPolicy
      */
     public function forceDelete(User $user, Submission $submission): bool
     {
-        //
+        return $user->hasPermission('force-delete-submission');
     }
 }

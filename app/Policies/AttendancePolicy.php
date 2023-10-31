@@ -3,17 +3,18 @@
 namespace App\Policies;
 
 use App\Models\Attendance;
+use App\Models\Session;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
 class AttendancePolicy
 {
-    /**
+   /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(User $user, Session $session): bool
     {
-        //
+        return $user->hasPermission('view-list-attendance') && $session->course->teacher->user_id == $user->id;
     }
 
     /**
@@ -21,7 +22,7 @@ class AttendancePolicy
      */
     public function view(User $user, Attendance $attendance): bool
     {
-        //
+        return $user->hasPermission('view-attendance');
     }
 
     /**
@@ -29,7 +30,7 @@ class AttendancePolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->hasPermission('create-attendance');
     }
 
     /**
@@ -37,7 +38,7 @@ class AttendancePolicy
      */
     public function update(User $user, Attendance $attendance): bool
     {
-        //
+        return $user->hasPermission('update-attendance');
     }
 
     /**
@@ -45,7 +46,7 @@ class AttendancePolicy
      */
     public function delete(User $user, Attendance $attendance): bool
     {
-        //
+        return $user->hasPermission('delete-attendance');
     }
 
     /**
@@ -53,7 +54,7 @@ class AttendancePolicy
      */
     public function restore(User $user, Attendance $attendance): bool
     {
-        //
+        return $user->hasPermission('restore-attendance');
     }
 
     /**
@@ -61,6 +62,6 @@ class AttendancePolicy
      */
     public function forceDelete(User $user, Attendance $attendance): bool
     {
-        //
+        return $user->hasPermission('force-delete-attendance');
     }
 }

@@ -8,12 +8,12 @@ use Illuminate\Auth\Access\Response;
 
 class FilePolicy
 {
-    /**
+   /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->hasPermission('view-list-file');
     }
 
     /**
@@ -21,7 +21,7 @@ class FilePolicy
      */
     public function view(User $user, File $file): bool
     {
-        //
+        return $user->hasPermission('view-file');
     }
 
     /**
@@ -29,7 +29,7 @@ class FilePolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->hasPermission('create-file');
     }
 
     /**
@@ -37,7 +37,7 @@ class FilePolicy
      */
     public function update(User $user, File $file): bool
     {
-        //
+        return $user->hasPermission('update-file');
     }
 
     /**
@@ -45,7 +45,7 @@ class FilePolicy
      */
     public function delete(User $user, File $file): bool
     {
-        //
+        return $user->hasPermission('delete-file');
     }
 
     /**
@@ -53,7 +53,7 @@ class FilePolicy
      */
     public function restore(User $user, File $file): bool
     {
-        //
+        return $user->hasPermission('restore-file');
     }
 
     /**
@@ -61,6 +61,6 @@ class FilePolicy
      */
     public function forceDelete(User $user, File $file): bool
     {
-        //
+        return $user->hasPermission('force-delete-file');
     }
 }

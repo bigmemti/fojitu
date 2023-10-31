@@ -13,7 +13,7 @@ class TypePolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return $user->hasPermission('view-list-type');
     }
 
     /**
@@ -21,7 +21,7 @@ class TypePolicy
      */
     public function view(User $user, Type $type): bool
     {
-        return true;
+        return $user->hasPermission('view-type');
     }
 
     /**
@@ -29,7 +29,7 @@ class TypePolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return $user->hasPermission('create-type');
     }
 
     /**
@@ -37,7 +37,7 @@ class TypePolicy
      */
     public function update(User $user, Type $type): bool
     {
-        return true;
+        return $user->hasPermission('update-type');
     }
 
     /**
@@ -45,7 +45,7 @@ class TypePolicy
      */
     public function delete(User $user, Type $type): bool
     {
-        return true;
+        return $user->hasPermission('delete-type');
     }
 
     /**
@@ -53,7 +53,7 @@ class TypePolicy
      */
     public function restore(User $user, Type $type): bool
     {
-        return true;
+        return $user->hasPermission('restore-type');
     }
 
     /**
@@ -61,6 +61,6 @@ class TypePolicy
      */
     public function forceDelete(User $user, Type $type): bool
     {
-        return true;
+        return $user->hasPermission('force-delete-type');
     }
 }

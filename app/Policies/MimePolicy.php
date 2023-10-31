@@ -8,12 +8,12 @@ use Illuminate\Auth\Access\Response;
 
 class MimePolicy
 {
-    /**
+   /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return $user->hasPermission('view-list-mime');
     }
 
     /**
@@ -21,7 +21,7 @@ class MimePolicy
      */
     public function view(User $user, Mime $mime): bool
     {
-        return true;
+        return $user->hasPermission('view-mime');
     }
 
     /**
@@ -29,7 +29,7 @@ class MimePolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return $user->hasPermission('create-mime');
     }
 
     /**
@@ -37,7 +37,7 @@ class MimePolicy
      */
     public function update(User $user, Mime $mime): bool
     {
-        return true;
+        return $user->hasPermission('update-mime');
     }
 
     /**
@@ -45,7 +45,7 @@ class MimePolicy
      */
     public function delete(User $user, Mime $mime): bool
     {
-        return true;
+        return $user->hasPermission('delete-mime');
     }
 
     /**
@@ -53,7 +53,7 @@ class MimePolicy
      */
     public function restore(User $user, Mime $mime): bool
     {
-        return true;
+        return $user->hasPermission('restore-mime');
     }
 
     /**
@@ -61,6 +61,6 @@ class MimePolicy
      */
     public function forceDelete(User $user, Mime $mime): bool
     {
-        return true;
+        return $user->hasPermission('force-delete-mime');
     }
 }

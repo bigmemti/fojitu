@@ -13,7 +13,7 @@ class TeacherPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->hasPermission('view-list-teacher');
     }
 
     /**
@@ -21,7 +21,7 @@ class TeacherPolicy
      */
     public function view(User $user, Teacher $teacher): bool
     {
-        //
+        return $user->hasPermission('view-teacher');
     }
 
     /**
@@ -29,7 +29,7 @@ class TeacherPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->hasPermission('create-teacher');
     }
 
     /**
@@ -37,7 +37,7 @@ class TeacherPolicy
      */
     public function update(User $user, Teacher $teacher): bool
     {
-        //
+        return $user->hasPermission('update-teacher');
     }
 
     /**
@@ -45,7 +45,7 @@ class TeacherPolicy
      */
     public function delete(User $user, Teacher $teacher): bool
     {
-        //
+        return $user->hasPermission('delete-teacher');
     }
 
     /**
@@ -53,7 +53,7 @@ class TeacherPolicy
      */
     public function restore(User $user, Teacher $teacher): bool
     {
-        //
+        return $user->hasPermission('restore-teacher');
     }
 
     /**
@@ -61,6 +61,6 @@ class TeacherPolicy
      */
     public function forceDelete(User $user, Teacher $teacher): bool
     {
-        //
+        return $user->hasPermission('force-delete-teacher');
     }
 }

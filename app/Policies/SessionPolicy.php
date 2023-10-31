@@ -2,18 +2,19 @@
 
 namespace App\Policies;
 
+use App\Models\Course;
 use App\Models\Session;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
 class SessionPolicy
 {
-    /**
+   /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(User $user, Course $course): bool
     {
-        return true;
+        return $user->hasPermission('view-list-session') && ($course->teacher->user_id == $user->id || $user->isMemberOf($course));
     }
 
     /**
@@ -21,23 +22,15 @@ class SessionPolicy
      */
     public function view(User $user, Session $session): bool
     {
-        return true;
-    }
-
-    /**
-     * Determine whether the user can view the model.
-     */
-    public function viewAttendances(User $user, Session $session): bool
-    {
-        return auth()->user()->teacher !== null;
+        return $user->hasPermission('view-session') && ($session->course->teacher->user_id == $user->id || $user->isMemberOf($session->course));
     }
 
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(User $user, Course $course): bool
     {
-        return auth()->user()->is_admin || auth()->user()->teacher;
+        return $user->hasPermission('create-session') && $course->teacher->user_id == $user->id;
     }
 
     /**
@@ -45,7 +38,7 @@ class SessionPolicy
      */
     public function update(User $user, Session $session): bool
     {
-        return auth()->user()->is_admin || auth()->user()->teacher;
+        return $user->hasPermission('update-session') && $session->course->teacher->user_id == $user->id;
     }
 
     /**
@@ -53,7 +46,7 @@ class SessionPolicy
      */
     public function delete(User $user, Session $session): bool
     {
-        return auth()->user()->is_admin || auth()->user()->teacher;
+        return $user->hasPermission('delete-session') && $session->course->teacher->user_id == $user->id;
     }
 
     /**
@@ -61,7 +54,7 @@ class SessionPolicy
      */
     public function restore(User $user, Session $session): bool
     {
-        return auth()->user()->is_admin;
+        return $user->hasPermission('restore-session') && $session->course->teacher->user_id == $user->id;
     }
 
     /**
@@ -69,6 +62,6 @@ class SessionPolicy
      */
     public function forceDelete(User $user, Session $session): bool
     {
-        return auth()->user()->is_admin;
+        return $user->hasPermission('force-delete-session') && $session->course->teacher->user_id == $user->id;
     }
 }

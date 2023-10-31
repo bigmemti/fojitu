@@ -8,20 +8,20 @@ use Illuminate\Auth\Access\Response;
 
 class HomeWorkPolicy
 {
-    /**
+   /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return $user->hasPermission('view-list-homework');
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, HomeWork $homeWork): bool
+    public function view(User $user, HomeWork $homework): bool
     {
-        return true;
+        return $user->hasPermission('view-homework');
     }
 
     /**
@@ -29,38 +29,38 @@ class HomeWorkPolicy
      */
     public function create(User $user): bool
     {
-        return auth()->user()->teacher !== null;
+        return $user->hasPermission('create-homework');
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, HomeWork $homeWork): bool
+    public function update(User $user, HomeWork $homework): bool
     {
-        return auth()->user()->teacher !== null;
+        return $user->hasPermission('update-homework');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, HomeWork $homeWork): bool
+    public function delete(User $user, HomeWork $homework): bool
     {
-        return auth()->user()->teacher !== null;
+        return $user->hasPermission('delete-homework');
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, HomeWork $homeWork): bool
+    public function restore(User $user, HomeWork $homework): bool
     {
-        return true;
+        return $user->hasPermission('restore-homework');
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, HomeWork $homeWork): bool
+    public function forceDelete(User $user, HomeWork $homework): bool
     {
-        return true;
+        return $user->hasPermission('force-delete-homework');
     }
 }

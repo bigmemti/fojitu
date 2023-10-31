@@ -8,12 +8,12 @@ use Illuminate\Auth\Access\Response;
 
 class TopicPolicy
 {
-    /**
+   /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return $user->hasPermission('view-list-topic');
     }
 
     /**
@@ -21,7 +21,7 @@ class TopicPolicy
      */
     public function view(User $user, Topic $topic): bool
     {
-        return true;
+        return $user->hasPermission('view-topic');
     }
 
     /**
@@ -29,7 +29,7 @@ class TopicPolicy
      */
     public function create(User $user): bool
     {
-        return auth()->user()->teacher !== null;
+        return $user->hasPermission('create-topic');
     }
 
     /**
@@ -37,7 +37,7 @@ class TopicPolicy
      */
     public function update(User $user, Topic $topic): bool
     {
-        return auth()->user()->teacher !== null;
+        return $user->hasPermission('update-topic');
     }
 
     /**
@@ -45,7 +45,7 @@ class TopicPolicy
      */
     public function delete(User $user, Topic $topic): bool
     {
-        return auth()->user()->teacher !== null;
+        return $user->hasPermission('delete-topic');
     }
 
     /**
@@ -53,7 +53,7 @@ class TopicPolicy
      */
     public function restore(User $user, Topic $topic): bool
     {
-        return auth()->user()->teacher !== null;
+        return $user->hasPermission('restore-topic');
     }
 
     /**
@@ -61,6 +61,6 @@ class TopicPolicy
      */
     public function forceDelete(User $user, Topic $topic): bool
     {
-        return auth()->user()->teacher !== null;
+        return $user->hasPermission('force-delete-topic');
     }
 }
