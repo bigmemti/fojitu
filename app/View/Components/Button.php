@@ -19,10 +19,10 @@ class Button extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(string $href, string $type)
+    public function __construct(string $href, string $type, string $class = '')
     {
         $this->href = $href;
-        $this->style .= ' ' . self::$class_types[$type];
+        $this->style .= ' ' . self::$class_types[$type] . ' ' . $class;
     }
 
     /**
