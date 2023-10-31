@@ -16,7 +16,9 @@ use App\Http\Controllers\PracticeController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CourseListController;
 use App\Http\Controllers\CurriculumController;
-use App\Http\Controllers\UniversityController;
+use App\Http\Controllers\SubmissionController;
+use App\Http\Controllers\InstitutionController;
+use App\Http\Controllers\TeacherRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,9 +42,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('user.teacher', TeacherController::class)->shallow();
+    Route::resource('user.teacher_request', TeacherRequestController::class,['except'=>['index']])->shallow();
+    Route::get('/teacher_request', [TeacherRequestController::class, 'index'])->name('teacher_request.index');
     Route::resource('user.student', StudentController::class)->shallow();
 
-    Route::resource('university', UniversityController::class);
+    Route::resource('institution', InstitutionController::class);
     Route::resource('major', MajorController::class);
     Route::resource('type', TypeController::class);
     Route::resource('type.mime', MimeController::class)->shallow();
@@ -54,6 +58,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('course.session', SessionController::class,['except' => ['index']])->shallow();
     Route::resource('session.topic', TopicController::class,['except' => ['index']])->shallow();
     Route::resource('session.homework', HomeWorkController::class,['except' => ['index']])->shallow();
+    Route::resource('homework.submission', SubmissionController::class)->shallow();
     Route::resource('topic.practice', PracticeController::class,['except' => ['index']])->shallow();
     Route::resource('session.attendance', AttendanceController::class)->shallow();
 
