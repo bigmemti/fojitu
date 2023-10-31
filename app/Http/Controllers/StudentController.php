@@ -33,6 +33,8 @@ class StudentController extends Controller
 
         $user->student? $user->student->update($request->validated()) : $user->student()->create($request->validated());
 
+        $user->roles()->sync([3]);
+
         return to_route('profile.edit')->withSuccess(__('Information updated successfully.'));
     }
 
