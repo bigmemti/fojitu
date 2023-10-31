@@ -6,7 +6,7 @@ use App\Models\Curriculum;
 use App\Http\Requests\StoreCurriculumRequest;
 use App\Http\Requests\UpdateCurriculumRequest;
 use App\Models\Major;
-use App\Models\University;
+use App\Models\Institution;
 
 class CurriculumController extends Controller
 {
@@ -26,7 +26,7 @@ class CurriculumController extends Controller
     public function create()
     {
         return view("curriculum.create",[
-            "universities"=> University::all(),
+            "institutions"=> Institution::all(),
             "majors"=> Major::all(),
         ]);
     }
@@ -58,7 +58,7 @@ class CurriculumController extends Controller
     {
         return view('curriculum.edit', [
             'curriculum'=> $curriculum,
-            "universities"=> University::all(),
+            "institutions"=> Institution::all(),
             "majors"=> Major::all(),
         ]);
     }
