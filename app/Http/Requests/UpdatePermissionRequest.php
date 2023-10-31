@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateHomeWorkRequest extends FormRequest
+class UpdatePermissionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return auth()->user()->teacher !== null;
+        return false;
     }
 
     /**
@@ -22,11 +22,7 @@ class UpdateHomeWorkRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|min:4|max:255',
-            'body' => 'required|min:10|max:2048',
-            'deadline' => 'nullable|date',
-            'types' => 'required',
-            'types.*' => 'integer|exists:types,id',
+            //
         ];
     }
 }
