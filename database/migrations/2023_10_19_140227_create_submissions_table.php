@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\HomeWork;
+use App\Models\Member;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,7 +15,14 @@ return new class extends Migration
     {
         Schema::create('submissions', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(HomeWork::class)->constrained();
+            $table->foreignIdFor(Member::class)->constrained();
+            $table->text('answer')->nullable();
+            $table->double('score',5,2,true)->nullable();
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->unique(['home_work_id','member_id'], 'HWMI');
         });
     }
 

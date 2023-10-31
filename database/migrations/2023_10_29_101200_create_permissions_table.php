@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Topic;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('practices', function (Blueprint $table) {
+        Schema::create('permissions', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Topic::class)->constrained();
-            $table->string('title');
-            $table->text('body');
-            $table->text('answer');
+            $table->string('name')->unique();
+            $table->string('namespace');
+            $table->boolean('is_appointable');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('practices');
+        Schema::dropIfExists('permissions');
     }
 };

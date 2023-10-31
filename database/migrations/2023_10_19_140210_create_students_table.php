@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(Curriculum::class)->constrained();
             $table->unsignedBigInteger('student_id');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->unique(['curriculum_id','student_id'],'CSI');
         });

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(Type::class)->constrained();
             $table->unsignedBigInteger('size');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

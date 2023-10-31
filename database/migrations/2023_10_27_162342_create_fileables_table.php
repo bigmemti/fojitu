@@ -1,7 +1,6 @@
 <?php
 
-use App\Models\Major;
-use App\Models\Institution;
+use App\Models\File;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -13,14 +12,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('curricula', function (Blueprint $table) {
+        Schema::create('fileables', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Institution::class)->constrained();
-            $table->foreignIdFor(Major::class)->constrained();
+            $table->foreignIdFor(File::class)->constrained();
+            $table->nullableMorphs('fileable');
             $table->timestamps();
             $table->softDeletes();
-
-            $table->unique(['institution_id','major_id'], 'UMI');
         });
     }
 
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('curricula');
+        Schema::dropIfExists('fileables');
     }
 };

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(Session::class)->constrained();
             $table->unsignedTinyInteger('status');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->unique(['member_id','session_id'], 'MSI');
         });

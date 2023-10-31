@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(Student::class)->constrained();
             $table->foreignIdFor(Course::class)->constrained();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->unique(['student_id' ,'course_id'],'SCI');
         });

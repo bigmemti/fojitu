@@ -17,7 +17,10 @@ return new class extends Migration
             $table->foreignIdFor(Session::class)->constrained();
             $table->string('title');
             $table->text('body');
+            $table->timestamp('deadline')->nullable();
+            $table->double('score',5,2,true)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

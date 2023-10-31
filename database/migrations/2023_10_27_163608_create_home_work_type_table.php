@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\Topic;
+use App\Models\HomeWork;
+use App\Models\Type;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,14 +13,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('practices', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(Topic::class)->constrained();
-            $table->string('title');
-            $table->text('body');
-            $table->text('answer');
+        Schema::create('home_work_type', function (Blueprint $table) {
+            $table->foreignIdFor(HomeWork::class)->constrained();
+            $table->foreignIdFor(Type::class)->constrained();
             $table->timestamps();
-            $table->softDeletes();
+
+            $table->unique(['home_work_id','type_id'], 'HWTI');
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('practices');
+        Schema::dropIfExists('home_work_type');
     }
 };

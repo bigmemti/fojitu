@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Institution;
 use App\Models\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,6 +16,7 @@ return new class extends Migration
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->unique()->constrained();
+            $table->foreignIdFor(Institution::class)->constrained();
             $table->timestamps();
             $table->softDeletes();
         });
