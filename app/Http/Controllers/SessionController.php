@@ -14,7 +14,7 @@ class SessionController extends Controller
      */
     public function create(Course $course)
     {
-        $this->authorize('create', Session::class);
+        $this->authorize('create', [Session::class, $course]);
 
         return view('session.create', ['course' => $course]);
     }
