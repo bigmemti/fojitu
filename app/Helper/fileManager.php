@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Storage;
 
 trait fileManager {
 
-    public function upload($file, $disk = 'local', $folder='')
+    public function upload($file, $folder='', $disk = 'local')
     {
         if($file) {
 
@@ -20,10 +20,10 @@ trait fileManager {
             Storage::disk($disk)->put( $file_path, File::get($file));
 
             return [
-                'file_path' => $file_path,
-                'file_name' => $file->getClientOriginalName(),
-                'file_mime' => $file->getClientOriginalExtension(),
-                'file_size' => $file->parseFilesize(),
+                $file_path,
+                $file->getClientOriginalName(),
+                $file->getClientOriginalExtension(),
+                Storage::size($file_path),
             ];
         }
     }
