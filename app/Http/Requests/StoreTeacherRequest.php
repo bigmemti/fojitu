@@ -22,7 +22,7 @@ class StoreTeacherRequest extends FormRequest
     public function rules(): array
     {
         return [
-            
+            'institution_id' => 'required|integer|exists:institutions,id'
         ];
     }
 }
