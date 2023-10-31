@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Session;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreSessionRequest extends FormRequest
@@ -11,7 +12,7 @@ class StoreSessionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return  auth()->user()->is_admin || auth()->user()->teacher;
+        return  auth()->user()->can('create', [Session::class, request()->course]);
     }
 
     /**
