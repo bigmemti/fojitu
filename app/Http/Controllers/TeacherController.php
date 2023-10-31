@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Teacher;
 use App\Http\Requests\StoreTeacherRequest;
 use App\Http\Requests\UpdateTeacherRequest;
+use App\Models\TeacherRequest;
 
 class TeacherController extends Controller
 {
@@ -30,9 +31,11 @@ class TeacherController extends Controller
      */
     public function store(StoreTeacherRequest $request, User $user)
     {
-        $user->teacher()->create();
+        $user->teacher()->create($request->validated());
+        $user->roles()->sync([2]);
+        TeacherRequest::find($request->teacher_request_id)->delete();
 
-        return to_route('dashboard')->withSuccess(__('your request has sent.'));
+        return to_route('teacher_request.index')->withSuccess(__('ok.'));
     }
 
     /**
