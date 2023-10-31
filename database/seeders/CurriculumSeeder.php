@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Major;
-use App\Models\University;
+use App\Models\Institution;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -14,11 +14,11 @@ class CurriculumSeeder extends Seeder
      */
     public function run(): void
     {
-        $universities = University::inRandomOrder()->get();
+        $institutions = Institution::inRandomOrder()->get();
 
 
-        foreach ($universities as $universities) {
-            $universities->majors()->sync(Major::inRandomOrder()->limit(3)->get());
+        foreach ($institutions as $institutions) {
+            $institutions->majors()->sync(Major::inRandomOrder()->limit(3)->get());
         }
     }
 }

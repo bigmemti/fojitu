@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // $this->call([
-        //     UniversitySeeder::class,
+        //     InstitutionSeeder::class,
         //     MajorSeeder::class,
         //     CurriculumSeeder::class,
         //     UserSeeder::class,
@@ -32,5 +32,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(UserPrimarySeeder::class);
+        $this->call(RoleSeeder::class);
+        $this->call(PermissionSeeder::class);
     }
 }

@@ -18,7 +18,19 @@ class UserPrimarySeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@admin.com',
             'password' => Hash::make('123456789'),
-            'type' => 0
+            'email_verified_at' => now()
+        ]);
+        User::create([
+            'name' => 'teacher',
+            'email' => 'teacher@admin.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now()
+        ]);
+        User::create([
+            'name' => 'student',
+            'email' => 'student@admin.com',
+            'password' => Hash::make('123456789'),
+            'email_verified_at' => now()
         ]);
     }
 }
