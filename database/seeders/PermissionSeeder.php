@@ -15,7 +15,7 @@ class PermissionSeeder extends Seeder
     {
         $permissions = [
             [
-                "name"=> "'view-list-course",
+                "name"=> "view-list-course",
                 "namespace" => "model.course",
             ],
             [
