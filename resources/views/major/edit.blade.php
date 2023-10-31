@@ -13,7 +13,7 @@
                         @csrf
                         @method('patch')
                         <label for="name" class="text-xl font-bold">name:</label>
-                        <input type="text" name="name" id="name" class="dark:bg-black dark:text-white" value="{{$major->name}}">
+                        <input type="text" name="name" id="name" class="dark:bg-gray-900 dark:text-white" value="{{$major->name}}">
                         @error('name')
                             <span>{{$message}}</span>
                         @enderror

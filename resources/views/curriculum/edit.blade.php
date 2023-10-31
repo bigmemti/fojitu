@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('University Edit') }}
+            {{ __('Institution Edit') }}
         </h2>
     </x-slot>
 
@@ -12,18 +12,18 @@
                     <form action="{{route('curriculum.update',['curriculum' => $curriculum])}}" method="POST" class="flex flex-col gap-4">
                         @csrf
                         @method('patch')
-                        <label for="university_id" class="text-xl font-semibold">{{ __('University') }}:</label>
-                        <select name="university_id" id="university_id">
-                            @foreach ($universities as $university )
-                                <option @selected($curriculum->university_id === $university->id) value="{{ $university->id }}">{{ $university->name }}</option>
+                        <label for="institution_id" class="text-xl font-semibold">{{ __('Institution') }}:</label>
+                        <select name="institution_id" id="institution_id" class="dark:bg-gray-900">
+                            @foreach ($institutions as $institution )
+                                <option @selected($curriculum->institution_id === $institution->id) value="{{ $institution->id }}">{{ $institution->name }}</option>
                             @endforeach
                         </select>
-                        @error('university_id')
+                        @error('institution_id')
                             <span>{{$message}}</span>
                         @enderror
 
                         <label for="major_id" class="text-xl font-semibold">{{ __('Major') }}:</label>
-                        <select name="major_id" id="major_id">
+                        <select name="major_id" id="major_id" class="dark:bg-gray-900">
                             @foreach ($majors as $major )
                                 <option @selected($curriculum->major_id === $major->id) value="{{ $major->id }}">{{ $major->name }}</option>
                             @endforeach

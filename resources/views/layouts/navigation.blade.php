@@ -11,22 +11,35 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 rtl:space-x-reverse sm:-my-px sm:ml-10 sm:rtl:mr-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('university.index')" :active="request()->routeIs('university.index')">
-                        {{ __('Universities') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('major.index')" :active="request()->routeIs('major.index')">
-                        {{ __('Majors') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('curriculum.index')" :active="request()->routeIs('curriculum.index')">
-                        {{ __('Curricula') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('type.index')" :active="request()->routeIs('type.index')">
-                        {{ __('Type') }}
-                    </x-nav-link>
+                    @can('viewAny', App\Models\Institution::class)
+                        <x-nav-link :href="route('institution.index')" :active="request()->routeIs('institution.index')">
+                            {{ __('Institutions') }}
+                        </x-nav-link>
+                    @endcan
+                    @can('viewAny', App\Models\Major::class)
+                        <x-nav-link :href="route('major.index')" :active="request()->routeIs('major.index')">
+                            {{ __('Majors') }}
+                        </x-nav-link>
+                    @endcan
+                    @can('viewAny', App\Models\Curriculum::class)
+                        <x-nav-link :href="route('curriculum.index')" :active="request()->routeIs('curriculum.index')">
+                            {{ __('Curricula') }}
+                        </x-nav-link>
+                    @endcan
+                    @can('viewAny', App\Models\Type::class)
+                        <x-nav-link :href="route('type.index')" :active="request()->routeIs('type.index')">
+                            {{ __('Types') }}
+                        </x-nav-link>
+                    @endcan
+                    @can('viewAny', App\Models\TeacherRequest::class)
+                        <x-nav-link :href="route('teacher_request.index')" :active="request()->routeIs('teacher_request.index')">
+                            {{ __('Teacher Requests') }}
+                        </x-nav-link>
+                    @endcan
                     @can('viewTeachingCourse', App\Model\Course::class)
                         <x-nav-link :href="route('teacher.course.index',['teacher' => auth()->user()->teacher])" :active="request()->routeIs('teacher.course.index',['teacher' => auth()->user()->teacher])">
                             {{ __('Teaching Courses') }}
@@ -46,13 +59,13 @@
             </div>
 
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
+            <div class="hidden sm:flex sm:items-center sm:ml-6 sm:rtl:mr-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }}</div>
 
-                            <div class="ml-1">
+                            <div class="ml-1 rtl:mr-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                 </svg>
@@ -80,7 +93,7 @@
             </div>
 
             <!-- Hamburger -->
-            <div class="-mr-2 flex items-center sm:hidden">
+            <div class="-mr-2 rtl:-ml-2 flex items-center sm:hidden">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -97,18 +110,31 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('university.index')" :active="request()->routeIs('university.index')">
-                {{ __('Universities') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('major.index')" :active="request()->routeIs('major.index')">
-                {{ __('Majors') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('curriculum.index')" :active="request()->routeIs('curriculum.index')">
-                {{ __('Curricula') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('type.index')" :active="request()->routeIs('type.index')">
-                {{ __('Type') }}
-            </x-responsive-nav-link>
+            @can('viewAny', App\Models\Institution::class)
+                <x-responsive-nav-link :href="route('institution.index')" :active="request()->routeIs('institution.index')">
+                    {{ __('Institutions') }}
+                </x-responsive-nav-link>
+            @endcan
+            @can('viewAny', App\Models\Major::class)
+                <x-responsive-nav-link :href="route('major.index')" :active="request()->routeIs('major.index')">
+                    {{ __('Majors') }}
+                </x-responsive-nav-link>
+            @endcan
+            @can('viewAny', App\Models\Curriculum::class)
+                <x-responsive-nav-link :href="route('curriculum.index')" :active="request()->routeIs('curriculum.index')">
+                    {{ __('Curricula') }}
+                </x-responsive-nav-link>
+            @endcan
+            @can('viewAny', App\Models\Type::class)
+                <x-responsive-nav-link :href="route('type.index')" :active="request()->routeIs('type.index')">
+                    {{ __('Types') }}
+                </x-responsive-nav-link>
+            @endcan
+            @can('viewAny', App\Models\TeacherRequest::class)
+                <x-responsive-nav-link :href="route('teacher_request.index')" :active="request()->routeIs('teacher_request.index')">
+                    {{ __('Teacher Requests') }}
+                </x-responsive-nav-link>
+            @endcan
             @can('viewTeachingCourse', App\Model\Course::class)
                 <x-responsive-nav-link :href="route('teacher.course.index',['teacher' => auth()->user()->teacher])" :active="request()->routeIs('teacher.course.index',['teacher' => auth()->user()->teacher])">
                     {{ __('Teaching Courses') }}

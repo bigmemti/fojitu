@@ -9,13 +9,15 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    @can('create', App\Models\Course::class)
-                        <div class="my-2">
-                            <x-button :href="route('teacher.course.create', ['teacher' => $teacher])" type="create">
-                                <i class="fa fa-plus text-sm"></i> {{ __('Create new courese.') }}
-                            </x-button>
-                        </div>
-                    @endcan
+                    @if (isset($teacher))
+                        @can('create', [App\Models\Course::class, $teacher->institution])
+                            <div class="my-2">
+                                <x-button :href="route('teacher.course.create', ['teacher' => $teacher])" type="create">
+                                    <i class="fa fa-plus text-sm"></i> {{ __('Create new courese.') }}
+                                </x-button>
+                            </div>
+                        @endcan
+                    @endif
                     <table class="w-full mt-8 table-bordered">
                         <thead>
                             <tr>

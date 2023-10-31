@@ -16,7 +16,7 @@
             <select name="curriculum_id" id="curriculum_id" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                 <option value="">{{ __('Choose one.') }}</option>
                 @forelse ($curricula as $curriculum)
-                    <option @selected(old('curriculum_id', $user->student?->curriculum_id) == $curriculum->id) value="{{ $curriculum->id }}">{{ $curriculum->university->name }} - {{ $curriculum->major->name }}</option>
+                    <option @selected(old('curriculum_id', $user->student?->curriculum_id) == $curriculum->id) value="{{ $curriculum->id }}">{{ $curriculum->institution->name }} - {{ $curriculum->major->name }}</option>
                 @empty
 
                 @endforelse

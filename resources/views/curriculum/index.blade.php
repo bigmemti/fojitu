@@ -19,7 +19,7 @@
                     <table class="w-full mt-8 table-bordered">
                         <thead>
                             <tr>
-                                <th>{{__('University')}}</th>
+                                <th>{{__('Institution')}}</th>
                                 <th>{{__('Major')}}</th>
                                 <th>{{__('Actions')}}</th>
                             </tr>
@@ -27,7 +27,7 @@
                         <tbody>
                             @forelse ($curricula as $curriculum)
                                 <tr>
-                                    <td class="text-center">{{$curriculum->university->name}}</td>
+                                    <td class="text-center">{{$curriculum->institution->name}}</td>
                                     <td class="text-center">{{$curriculum->major->name}}</td>
                                     <td class="py-4 text-center">
                                         <x-button :href="route('curriculum.show',['curriculum' => $curriculum])" type="info"><i class="fa-light fa-eye"></i></x-button>

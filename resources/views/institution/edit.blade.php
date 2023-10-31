@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('University Create') }}
+            {{ __('Institution Edit') }}
         </h2>
     </x-slot>
 
@@ -9,10 +9,11 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form action="{{route('university.store')}}" method="POST" class="flex flex-col gap-4">
+                    <form action="{{route('institution.update',['institution' => $institution])}}" method="POST" class="flex flex-col gap-4">
                         @csrf
-                        <label for="name" class="text-xl font-semibold">name:</label>
-                        <input type="text" name="name" id="name" value="{{old('name')}}" class="dark:bg-gray-900">
+                        @method('patch')
+                        <label for="name" class="text-xl font-bold">name:</label>
+                        <input type="text" name="name" id="name" class="dark:bg-gray-900 dark:text-white" value="{{$institution->name}}">
                         @error('name')
                             <span>{{$message}}</span>
                         @enderror

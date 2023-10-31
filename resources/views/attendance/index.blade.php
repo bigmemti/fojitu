@@ -22,7 +22,7 @@
                                     <td class="text-center">{{ $member->pivot? $attendance::statuses[$member->pivot->status] : 'Unknown' }}</td>
                                     <td class="text-center py-4">
                                         @if ($member->pivot)
-                                            @if ($member->pivot->status === 0)
+                                            @if ($member->pivot->status == 0)
                                                 <form action="{{route('attendance.update', ['attendance' => $member->pivot->id])}}" method="post"
                                                     class="inline-block bg-red-500 hover:bg-red-400 hover:text-white hover:cursor-pointer
                                                             dark:bg-red-800 dark:hover:bg-red-700 rounded-xl p-2 px-3">
@@ -40,7 +40,7 @@
                                                         <input type="hidden" name="status" value="0">
                                                         <button type="submit"><i class="fa-thin fa-user-check"></i></button>
                                                 </form>
-                                                @if ($member->pivot->status === 1)
+                                                @if ($member->pivot->status == 1)
                                                     <form action="{{route('attendance.update', ['attendance' => $member->pivot->id])}}" method="post"
                                                         class="inline-block bg-yellow-500 hover:bg-yellow-400 hover:text-white hover:cursor-pointer
                                                                 dark:bg-yellow-800 dark:hover:bg-yellow-700 rounded-xl p-2 px-3">
@@ -82,7 +82,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="2" class="text-center py-2">
+                                    <td colspan="3" class="text-center py-2">
                                         {{__('There is nothing.')}}
                                     </td>
                                 </tr>

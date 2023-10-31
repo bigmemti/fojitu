@@ -11,66 +11,68 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="mb-8 flex flex-col gap-4">
                         <h2 class="text-xl font-bold">
-                            {{__('Cource name')}} : <span class="font-normal">{{ $course->name }}</span>
+                            {{__('Course')}} : <span class="font-normal">{{ $course->name }}</span>
                         </h2>
                         <h2 class="text-xl font-bold">
-                            {{__('Teacher name')}} : <span class="font-normal">{{ $course->teacher->user->name }}</span>
+                            {{__('Teacher')}} : <span class="font-normal">{{ $course->teacher->user->name }}</span>
                         </h2>
                         <h2 class="text-xl font-bold">
-                            {{__('Curriculum name')}} : <span class="font-normal">{{$course->curriculum->university->name}} - {{$course->curriculum->major->name}}</span>
+                            {{__('Curriculum')}} : <span class="font-normal">{{$course->curriculum->institution->name}} - {{$course->curriculum->major->name}}</span>
                         </h2>
                     </div>
-                    <div class="flex justify-between mb-6">
-                        <h3 class="text-xl font-bold">{{__('Sessions')}} :</h3>
-                        @can('create', App\Models\Session::class)
-                            <div>
-                                <a class="px-1.5 py-1 bg-green-500 rounded-full" href="{{route('course.session.create', ['course' => $course])}}">
-                                    <i class="fa fa-plus" ></i>
-                                </a>
-                            </div>
-                        @endcan
-                    </div>
-                    <div>
-                        <ol class="list-decimal px-4">
-                            @forelse ($course->sessions as $session)
-                            <li class="text-xl">
-                                <div class="flex items-center justify-between">
-                                    <p class="text-xl">{{ $session->name }}</p>
-                                    <div class="text-md py-4">
-                                        <x-button :href="route('session.show',['session' => $session])" type="info"><i class="fa-light fa-eye"></i></x-button>
-                                        @can('update', $session)
-                                            <x-button :href="route('session.edit',['session' => $session])" type="edit"><i class="fa-light fa-pen"></i></x-button>
-                                        @endcan
-                                        @can('delete', $session)
-                                            <form x-data @submit.prevent="
-                                            Swal.fire({
-                                                title: '{!!__("Are you sure?")!!}',
-                                                text: '{!!__("You can\'t restore it!")!!}',
-                                                icon: 'warning',
-                                                showCancelButton: true,
-                                                confirmButtonColor: '#d33',
-                                                cancelButtonColor: '#666',
-                                                cancelButtonText:'{!!__("Cancel")!!}',
-                                                confirmButtonText: '{!!__("Yes, delete it!")!!}'
-                                            }).then((result) => {
-                                                if (result.isConfirmed) {
-                                                    $event.target.submit()
-                                                }
-                                            })
-                                            " action="{{route('session.destroy', ['session' => $session])}}" method="post" class="inline-block bg-red-500 hover:bg-red-400 dark:bg-red-800 dark:hover:bg-red-700 rounded-xl p-2 px-3">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit"><i class="fa-light fa-trash"></i></button>
-                                            </form>
-                                        @endcan
-                                    </div>
+                    @can('viewAny', [App\Models\Session::class, $course])
+                        <div class="flex justify-between mb-6">
+                            <h3 class="text-xl font-bold">{{__('Sessions')}} :</h3>
+                            @can('create', [App\Models\Session::class, $course])
+                                <div>
+                                    <a class="px-1.5 py-1 bg-green-500 rounded-full" href="{{route('course.session.create', ['course' => $course])}}">
+                                        <i class="fa fa-plus" ></i>
+                                    </a>
                                 </div>
-                            </li>
-                            @empty
+                            @endcan
+                        </div>
+                        <div>
+                            <ol class="list-decimal px-4">
+                                @forelse ($course->sessions as $session)
+                                <li class="text-xl">
+                                    <div class="flex items-center justify-between">
+                                        <p class="text-xl">{{ $session->name }}</p>
+                                        <div class="text-md py-4">
+                                            <x-button :href="route('session.show',['session' => $session])" type="info"><i class="fa-light fa-eye"></i></x-button>
+                                            @can('update', $session)
+                                                <x-button :href="route('session.edit',['session' => $session])" type="edit"><i class="fa-light fa-pen"></i></x-button>
+                                            @endcan
+                                            @can('delete', $session)
+                                                <form x-data @submit.prevent="
+                                                Swal.fire({
+                                                    title: '{!!__("Are you sure?")!!}',
+                                                    text: '{!!__("You can\'t restore it!")!!}',
+                                                    icon: 'warning',
+                                                    showCancelButton: true,
+                                                    confirmButtonColor: '#d33',
+                                                    cancelButtonColor: '#666',
+                                                    cancelButtonText:'{!!__("Cancel")!!}',
+                                                    confirmButtonText: '{!!__("Yes, delete it!")!!}'
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        $event.target.submit()
+                                                    }
+                                                })
+                                                " action="{{route('session.destroy', ['session' => $session])}}" method="post" class="inline-block bg-red-500 hover:bg-red-400 dark:bg-red-800 dark:hover:bg-red-700 rounded-xl p-2 px-3">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit"><i class="fa-light fa-trash"></i></button>
+                                                </form>
+                                            @endcan
+                                        </div>
+                                    </div>
+                                </li>
+                                @empty
 
-                            @endforelse
-                        </ol>
-                    </div>
+                                @endforelse
+                            </ol>
+                        </div>
+                    @endcan
                     @can('viewCourseMember', $course)
                         <table class="w-full table-bordered mt-8">
                             <thead>
@@ -78,11 +80,13 @@
                                 <th>{{__('Actions')}}</th>
                             </thead>
                             <tbody>
-                                @forelse ($course->students as $students)
-                                    <tr>
-                                        <td class="text-center">{{$students->user->name}}</td>
-                                        <td class="text-center py-4"></td>
-                                    </tr>
+                                @forelse ($course->students as $student)
+                                    @if($student->user)
+                                        <tr>
+                                            <td class="text-center">{{$student->user->name}}</td>
+                                            <td class="text-center py-4"></td>
+                                        </tr>
+                                    @endif
                                 @empty
                                     <tr>
                                         <td colspan="2" class="text-center py-2">
