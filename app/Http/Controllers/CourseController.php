@@ -30,7 +30,7 @@ class CourseController extends Controller
      */
     public function create(Teacher $teacher)
     {
-        $this->authorize('create', Course::class);
+        $this->authorize('create', [Course::class, $teacher->institution]);
 
         return view('course.create', [
             'teacher' => $teacher,
@@ -56,7 +56,7 @@ class CourseController extends Controller
         $this->authorize('view', $course);
 
         return view('course.show', [
-            'course' => $course->load(['sessions', 'students.user', 'teacher.user', 'curriculum' => fn($query) => $query->with(['university', 'major'])])
+            'course' => $course->load(['sessions', 'students.user', 'teacher.user', 'curriculum' => fn($query) => $query->with(['institution', 'major'])])
         ]);
     }
 
