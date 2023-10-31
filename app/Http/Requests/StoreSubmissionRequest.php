@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Mime;
+use App\Models\Submission;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreSubmissionRequest extends FormRequest
@@ -11,7 +13,7 @@ class StoreSubmissionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->user()->can('create', [Submission::class, request()->homework]);
     }
 
     /**
@@ -22,7 +24,9 @@ class StoreSubmissionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'answer' => 'required_if:files,null|max:2048',
+            'files' => 'required_if:answer,null',
+            'files.*' => 'file|nullable|mimes:'.Mime::whereRelation('type.homeworks', 'home_works.id', request()->homework->id)->get()->pluck('name')->implode(','),
         ];
     }
 }
