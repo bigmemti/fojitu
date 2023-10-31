@@ -5,14 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class File extends Model
+class Role extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'path',
-        'size',
-        'type_id',
+        'is_flexible',
+        'is_appointable',
     ];
+
+    public function users(){
+        return $this->belongsToMany(User::class);
+    }
 }

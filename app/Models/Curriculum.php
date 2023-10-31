@@ -10,12 +10,12 @@ class Curriculum extends Model
     use HasFactory;
 
     protected $fillable = [
-        'university_id',
+        'institution_id',
         'major_id'
     ];
 
-    public function university(){
-        return $this->belongsTo(University::class);
+    public function institution(){
+        return $this->belongsTo(Institution::class);
     }
 
     public function major(){
