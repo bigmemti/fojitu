@@ -17,6 +17,7 @@
                         </thead>
                         <tbody>
                             @forelse ($members as $member)
+                            @if ($member?->student?->user)
                                 <tr @class($member->pivot ? $attendance::statuses[$member->pivot->status] : null)>
                                     <td class="text-center">{{$member->student->user->name}}</td>
                                     <td class="text-center">{{ $member->pivot? $attendance::statuses[$member->pivot->status] : 'Unknown' }}</td>
@@ -80,6 +81,7 @@
                                         @endif
                                     </td>
                                 </tr>
+                            @endif
                             @empty
                                 <tr>
                                     <td colspan="3" class="text-center py-2">
