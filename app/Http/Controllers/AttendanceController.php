@@ -15,7 +15,7 @@ class AttendanceController extends Controller
      */
     public function index(Session $session, Attendance $attendance)
     {
-        $members = Member::whereRelation('student.courses','courses.id', $session->course_id)
+        $members = Member::whereRelation('course','courses.id', $session->course_id)
             ->WhereDoesntHave('sessions', fn($query) => $query->where('sessions.id', $session->id))
             ->get()->load(['student.user']);
 
