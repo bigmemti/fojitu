@@ -19,7 +19,7 @@
                         @enderror
 
                         <label for="body" class="text-xl font-semibold">body:</label>
-                        <textarea name="body" id="body" class="dark:bg-gray-900">{{old('body',$homework->body)}}</textarea>
+                        <x-text-editor column="body" :value="$homework->body" />
                         @error('body')
                             <span>{{$message}}</span>
                         @enderror

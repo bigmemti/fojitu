@@ -163,9 +163,9 @@
                                             @endcan
                                         </div>
                                     </div>
-                                    <div class="p-2 my-4 border border-sky-300 bg-sky-300 bg-opacity-20">
+                                    {{-- <div class="p-2 my-4 border border-sky-300 bg-sky-300 bg-opacity-20">
                                         {{ $homework->body }}
-                                    </div>
+                                    </div> --}}
                                 </li>
                                 @empty
 

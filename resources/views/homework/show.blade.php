@@ -25,8 +25,8 @@
                         {{__('deadline')}} : <span class="font-normal">{{$homework->deadline}}</span>
                     </h2>
 
-                    <div class="text-lg">
-                        {{ $homework->body }}
+                    <div class="text-lg show">
+                        {!! $homework->body !!}
                     </div>
 
                     @can('veiwAny', [App\Models\Submission::class, $homework])

@@ -67,11 +67,11 @@
                                             @endcan
                                         </div>
                                     </div>
-                                    <div class="p-2 my-4 border border-sky-300 bg-sky-300 bg-opacity-20">
-                                        {{ $practice->body }}
+                                    <div class="p-2 my-4 border border-sky-300 bg-sky-300 bg-opacity-20 show">
+                                        {!! $practice->body !!}
                                     </div>
-                                    <div class="p-2 my-4 border border-green-300 bg-green-300 bg-opacity-20">
-                                        {{ $practice->answer }}
+                                    <div class="p-2 my-4 border border-green-300 bg-green-300 bg-opacity-20 show">
+                                        {!! $practice->answer !!}
                                     </div>
                                 </li>
                                 @empty

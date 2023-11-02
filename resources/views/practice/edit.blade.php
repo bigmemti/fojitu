@@ -19,13 +19,15 @@
                         @enderror
 
                         <label for="body" class="text-xl font-semibold">body:</label>
-                        <textarea name="body" id="body" class="dark:bg-gray-900">{{$practice->body}}</textarea>
+                        <x-text-editor column="body" :value="$practice->body" />
+                            {{-- <textarea name="body" id="body" class="dark:bg-gray-900">{{$practice->body}}</textarea> --}}
                         @error('body')
                             <span>{{$message}}</span>
                         @enderror
 
                         <label for="answer" class="text-xl font-semibold">answer:</label>
-                        <textarea name="answer" id="answer" class="dark:bg-gray-900">{{$practice->answer}}</textarea>
+                        <x-text-editor column="answer" :value="$practice->answer" />
+                            {{-- <textarea name="answer" id="answer" class="dark:bg-gray-900">{{$practice->answer}}</textarea> --}}
                         @error('answer')
                             <span>{{$message}}</span>
                         @enderror

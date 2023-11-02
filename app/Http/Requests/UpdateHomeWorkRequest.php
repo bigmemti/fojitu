@@ -23,7 +23,7 @@ class UpdateHomeWorkRequest extends FormRequest
     {
         return [
             'title' => 'required|min:4|max:255',
-            'body' => 'required|min:10|max:2048',
+            'body' => 'required|min:10',
             'deadline' => 'nullable|date',
             'types' => 'required',
             'types.*' => 'integer|exists:types,id',

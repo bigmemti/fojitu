@@ -23,8 +23,8 @@ class StorePracticeRequest extends FormRequest
     {
         return [
             'title' => 'required|min:4|max:255',
-            'body'=> 'required|min:10|max:2048',
-            'answer'=> 'nullable|min:10|max:2048',
+            'body'=> 'required|min:10',
+            'answer'=> 'nullable|min:10',
         ];
     }
 }
