@@ -26,7 +26,14 @@ class StoreSubmissionRequest extends FormRequest
         return [
             'answer' => 'required_if:files,null|max:2048',
             'files' => 'required_if:answer,null',
-            'files.*' => 'file|nullable|mimes:'.Mime::whereRelation('type.homeworks', 'home_works.id', request()->homework->id)->get()->pluck('name')->implode(','),
+            'files.*' => [
+                'file',
+                'nullable',
+                'mimes' => fn ($attribute, $value, $fail)
+                => (in_array($value->getClientOriginalExtension(), request()->homework->mimes()->pluck('name')->toArray()))
+                ? null
+                : $fail(':attribute mimes is ' . request()->homework->getMimes())
+            ],
         ];
     }
 }

@@ -42,4 +42,12 @@ class HomeWork extends Model
     public function submissions(){
         return $this->hasMany(Submission::class);
     }
+
+    public function mimes(){
+        return Mime::whereRelation('type.homeworks', 'home_works.id', $this->id)->get();
+    }
+
+    public function getMimes(){
+        return $this->mimes()->pluck('name')->implode(',');
+    }
 }
