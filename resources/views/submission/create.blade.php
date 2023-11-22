@@ -28,9 +28,9 @@
                     </div>
                     <form action="{{route('homework.submission.store',['homework' => $homework])}}" method="POST" enctype="multipart/form-data" class="flex flex-col gap-4 mt-8">
                         @csrf
-                        <label for="anwer" class="text-xl font-semibold">anwer:</label>
-                        <textarea name="anwer" id="anwer" class="dark:bg-gray-900">{{old('anwer')}}</textarea>
-                        @error('anwer')
+                        <label for="answer" class="text-xl font-semibold">answer:</label>
+                        <textarea name="answer" id="answer" class="dark:bg-gray-900">{{old('answer')}}</textarea>
+                        @error('answer')
                             <span>{{$message}}</span>
                         @enderror
 

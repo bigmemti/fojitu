@@ -18,14 +18,14 @@
                         @enderror
 
                         <label for="body" class="text-xl font-semibold">body:</label>
-                        <x-text-editor column="body" />
+                        <x-text-editor column="body"  value="" />
                             {{-- <textarea name="body" id="body" class="dark:bg-gray-900">{{old('body')}}</textarea> --}}
                         @error('body')
                             <span>{{$message}}</span>
                         @enderror
 
                         <label for="answer" class="text-xl font-semibold">answer:</label>
-                        <x-text-editor column="answer" />
+                        <x-text-editor column="answer" value="" />
                             {{-- <textarea name="answer" id="answer" class="dark:bg-gray-900">{{old('answer')}}</textarea> --}}
                         @error('answer')
                             <span>{{$message}}</span>

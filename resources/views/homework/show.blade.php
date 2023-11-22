@@ -25,11 +25,11 @@
                         {{__('deadline')}} : <span class="font-normal">{{$homework->deadline}}</span>
                     </h2>
 
-                    <div class="text-lg show">
+                    <div class="show px-4 text-lg">
                         {!! $homework->body !!}
                     </div>
 
-                    @can('veiwAny', [App\Models\Submission::class, $homework])
+                    @can('viewAny', [App\Models\Submission::class, $homework])
                         <x-button class="self-start" :href="route('homework.submission.index', ['homework' => $homework])" type="info"><i class="fa-thin fa-list"></i></x-button>
                     @endcan
 
@@ -37,7 +37,7 @@
                         @if(auth()->user()->can('create', [App\Models\Submission::class, $homework]) && !$submission)
                             <x-button class="self-start" :href="route('homework.submission.create', ['homework' => $homework])" type="create"><i class="fa-thin fa-upload"></i></x-button>
                         @elseif (auth()->user()->can('update', $submission) && $submission)
-                            {{-- <x-button class="self-start" :href="route('submission.edit', ['submission' => $submission])" type="edit"><i class="fa-thin fa-edit"></i></x-button> --}}
+                            <x-button class="self-start" :href="route('submission.edit', ['submission' => $submission])" type="edit"><i class="fa-thin fa-edit"></i></x-button>
                         @endcan
                     @endif
 

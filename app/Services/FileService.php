@@ -29,4 +29,8 @@ class FileService{
 
         return $file;
     }
+
+    public static function deleteFile($path, FileService $service = new FileService()) {
+        $service->delete($path);
+    }
 }

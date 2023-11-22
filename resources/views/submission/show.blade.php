@@ -10,33 +10,47 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="flex flex-col  gap-4 p-6 text-gray-900 dark:text-gray-100">
                     <h2 class="text-xl font-bold">
-                        {{__('Cource name')}} : <a class="font-normal" href="{{ route('course.show', ['course' => $homework->session->course]) }}">{{ $homework->session->course->name }}</a>
+                        {{__('Teacher')}} : <span class="font-normal">{{ $submission->homework->session->course->teacher->user->name }}</span>
                     </h2>
 
                     <h2 class="text-xl font-bold">
-                        {{__('Session name')}} : <a href="{{ route('session.show', ['session' => $homework->session])}}" class="font-normal">{{$homework->session->name}}</a>
+                        {{__('Course')}} : <a class="font-normal" href="{{ route('course.show', ['course' => $submission->homework->session->course]) }}">{{ $submission->homework->session->course->name }}</a>
                     </h2>
 
                     <h2 class="text-xl font-bold">
-                        {{__('Homework title')}} : <span class="font-normal">{{$homework->title}}</span>
+                        {{__('Session')}} : <a href="{{ route('session.show', ['session' => $submission->homework->session])}}" class="font-normal">{{$submission->homework->session->name}}</a>
                     </h2>
 
                     <h2 class="text-xl font-bold">
-                        {{__('Homework deadline')}} : <span class="font-normal">{{$homework->deadline}}</span>
+                        {{__('Homework')}} : <a href="{{ route('homework.show', ['homework' => $submission->homework])}}" class="font-normal">{{$submission->homework->title}}</a>
                     </h2>
 
-                    <div class="text-lg">
-                        {{ $homework->body }}
+                    <h2 class="text-xl font-bold">
+                        {{__('deadline')}} : <span class="font-normal">{{$submission->homework->deadline}}</span>
+                    </h2>
+
+                    <div class="text-lg show">
+                        {!! $submission->homework->body !!}
                     </div>
 
-                    @can('veiwAny', [App\Models\Submission::class, $homework])
-                        <x-button class="self-start" :href="route('homework.submission.index', ['homework' => $homework])" type="info"><i class="fa-thin fa-list"></i></x-button>
-                    @endcan
+                    <div class="text-lg show">
+                        {!! $submission->answer !!}
+                    </div>
 
-                    @if(auth()->user()->can('create', [App\Models\Submission::class, $homework]) && $homework->hasTimeLeft())
-                        <x-button class="self-start" :href="route('homework.submission.create', ['homework' => $homework])" type="create"><i class="fa-thin fa-upload"></i></x-button>
+                    <div class="flex flex-col gap-4">
+                        @forelse ($submission->files as $file )
+                            <div class="flex justify-between">
+                                <div class="text-lg">{{ $file->name }}</div>
+                                <div class="flex gap-4">
+                                    <a class="p-2 bg-green-800 rounded-lg" href="{{ route('file.download', ['file' => $file]) }}">
+                                        <i class="fa-thin fa-download"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        @empty
 
-                    @endcan
+                        @endforelse
+                    </div>
 
                 </div>
             </div>

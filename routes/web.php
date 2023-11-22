@@ -16,8 +16,10 @@ use App\Http\Controllers\PracticeController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CourseListController;
 use App\Http\Controllers\CurriculumController;
+use App\Http\Controllers\FileableController;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\InstitutionController;
+use App\Http\Controllers\FileAdditionController;
 use App\Http\Controllers\TeacherRequestController;
 
 /*
@@ -61,6 +63,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('homework.submission', SubmissionController::class)->shallow();
     Route::resource('topic.practice', PracticeController::class,['except' => ['index']])->shallow();
     Route::resource('session.attendance', AttendanceController::class)->shallow();
+    Route::get('/file/{file}/download', [FileAdditionController::class, 'download'])->name('file.download');
+    Route::get('/file/{file}/image', [FileAdditionController::class, 'image'])->name('file.image');
+    Route::resource('fileable', FileableController::class);
 
 
     Route::resource('course.member', MemberController::class)->shallow();

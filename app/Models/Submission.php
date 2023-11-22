@@ -24,6 +24,6 @@ class Submission extends Model
     }
 
     public function files(){
-        return $this->morphToMany(File::class,'fileable',Fileable::class);
+        return $this->morphToMany(File::class,'fileable',Fileable::class)->withPivot(['id']);
     }
 }

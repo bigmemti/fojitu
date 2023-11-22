@@ -61,6 +61,12 @@ class FileableController extends Controller
      */
     public function destroy(Fileable $fileable)
     {
-        //
+        $file = $fileable->file;
+
+        $fileable->delete();
+
+        $file->delete();
+
+        return back()->withSuccess(__('File deleted successfully.'));
     }
 }

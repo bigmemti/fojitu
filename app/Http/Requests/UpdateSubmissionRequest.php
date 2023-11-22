@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Submission;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateSubmissionRequest extends FormRequest
@@ -11,7 +12,7 @@ class UpdateSubmissionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->user()->can('update', request()->submission);
     }
 
     /**
@@ -22,7 +23,16 @@ class UpdateSubmissionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'answer' => 'required_if:files,null|max:2048',
+            'files' => 'required_if:answer,null',
+            'files.*' => [
+                'file',
+                'nullable',
+                'mimes' => fn ($attribute, $value, $fail)
+                => (in_array($value->getClientOriginalExtension(), request()->submission->homework->mimes()->pluck('name')->toArray()))
+                ? null
+                : $fail(':attribute mimes is ' . request()->submission->homework->getMimes())
+            ],
         ];
     }
 }
