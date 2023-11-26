@@ -34,7 +34,7 @@ use App\Http\Controllers\TeacherRequestController;
 Route::view('/', 'welcome');
 
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 
@@ -67,6 +67,3 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-
-
