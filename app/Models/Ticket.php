@@ -14,7 +14,7 @@ class Ticket extends Model
         "title"
     ]
 
-    function box()
+    public function box()
     {
         $this->belongsTo(Box::class);
     }

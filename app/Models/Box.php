@@ -13,7 +13,7 @@ class Box extends Model
         "user_id"
     ];
 
-    function user()
+    public function user()
     {
         $this->belongsTo(User::class);
     }
