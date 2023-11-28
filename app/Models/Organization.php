@@ -12,4 +12,14 @@ class Organization extends Model
     protected $fillable = [
         "name"
     ];
+
+    public function tickets()
+    {
+
+    }
+
+    public function boxes()
+    {
+
+    }
 }

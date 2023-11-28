@@ -19,5 +19,8 @@ class Ticket extends Model
         $this->belongsTo(Box::class);
     }
 
+    public function messages()
+    {
 
+    }
 }
