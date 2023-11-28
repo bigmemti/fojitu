@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Box extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "user_id"
+    ];
+
+    function user()
+    {
+        $this->belongsTo(User::class);
+    }
 }
