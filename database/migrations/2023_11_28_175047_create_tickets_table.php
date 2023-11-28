@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Box::class)->constrained();
-            $table->string("title");
+            $table->string('title');
             $table->timestamps();
             $table->softDeletes();
         });
