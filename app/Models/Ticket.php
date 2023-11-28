@@ -12,7 +12,7 @@ class Ticket extends Model
     protected $fillable = [
         "box_id",
         "title"
-    ]
+    ];
 
     public function box()
     {
