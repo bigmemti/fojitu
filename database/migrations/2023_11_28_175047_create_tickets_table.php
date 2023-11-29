@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Box;
+use App\Models\Organization;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,6 +16,7 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Box::class)->constrained();
+            $table->foreignIdFor(Organization::class)->constrained();
             $table->string('title');
             $table->timestamps();
             $table->softDeletes();
