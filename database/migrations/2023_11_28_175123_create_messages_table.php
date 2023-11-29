@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Box;
 use App\Models\Ticket;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,6 +16,7 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Ticket::class)->constrained();
+            $table->foreignIdFor(Box::class)->constrained();
             $table->text("message");
             $table->timestamps();
             $table->softDeletes();
