@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\Models\Box;
 use App\Models\Organization;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('box_organization', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->unique()->constrained();
-            $table->foreignIdFor(Organization::class)->unique()->constrained();
+            $table->foreignIdFor(Box::class)->constrained();
+            $table->foreignIdFor(Organization::class)->constrained();
             $table->timestamps();
+            $table->unique(['box_id' , 'organization_id']);
             $table->softDeletes();
 
         });

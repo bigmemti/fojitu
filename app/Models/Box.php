@@ -29,15 +29,15 @@ class Box extends Model
         $this->hasMany(Message::class);
     }
 
-    public function messagesInTicket(Ticket $ticket) : Attribute
-    {
-        return Attribute::make(
-            get : fn() => null
-        );
-    }
+    // public function messagesInTicket(Ticket $ticket) : Attribute
+    // {
+    //     return Attribute::make(
+    //         get : fn() => null
+    //     );
+    // }
 
     public function organizations()
     {
-        return $this->belongsToMany(Organization::class);
+        return $this->hasMany(Organization::class);
     }
 }

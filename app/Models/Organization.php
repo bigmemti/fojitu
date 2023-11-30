@@ -20,6 +20,6 @@ class Organization extends Model
 
     public function boxes()
     {
-        $this->hasMany(Box::class);
+        return $this->belongsToMany(Box::class);
     }
 }
