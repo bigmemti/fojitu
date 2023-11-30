@@ -19,6 +19,8 @@ use App\Http\Controllers\CurriculumController;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\InstitutionController;
 use App\Http\Controllers\TeacherRequestController;
+use App\Http\Controllers\TicketController;
+use App\Models\Ticket;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +66,8 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::resource('course.member', MemberController::class)->shallow();
+
+    Route::resource('box.ticket' , TicketController::class)->shallow();
 });
 
 require __DIR__.'/auth.php';

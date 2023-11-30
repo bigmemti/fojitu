@@ -62,5 +62,7 @@
     "Forgot your password?" : "رمز عبور خود را فراموش کردید؟",
     "Remember me" : "مرا به خاطر داشته باش",
     "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one." : "رمز عبور خود را فراموش کرده اید؟ مشکلی نیست فقط آدرس ایمیل خود را به ما اطلاع دهید و ما یک پیوند بازنشانی رمز عبور را برای شما ایمیل می کنیم که به شما امکان می دهد رمز جدیدی را انتخاب کنید.",
-    "Register" : "ثبت‌نام"
+    "Register" : "ثبت‌نام",
+
+    "Tickets" : "تیکت ها"
 }
