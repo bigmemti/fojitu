@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(Box::class)->constrained();
             $table->foreignIdFor(Organization::class)->constrained();
             $table->string('title');
+            $table->unsignedTinyInteger('status');
             $table->timestamps();
             $table->softDeletes();
         });

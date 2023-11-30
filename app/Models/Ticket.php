@@ -15,9 +15,16 @@ class Ticket extends Model
         "title"
     ];
 
+    const statuses = ['Created', 'Seen', 'Not Seen', 'Closed'];
+
     public function box()
     {
         return $this->belongsTo(Box::class);
+    }
+
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class);
     }
 
     public function messages()
