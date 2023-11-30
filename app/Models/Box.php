@@ -16,15 +16,20 @@ class Box extends Model
 
     public function user()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function tickets()
     {
-
+        return $this->hasMany(Ticket::class);
     }
 
-    public function messages(Ticket $ticket) : Attribute
+    public function messages()
+    {
+        $this->hasMany(Message::class);
+    }
+
+    public function messagesInTicket(Ticket $ticket) : Attribute
     {
         return Attribute::make(
             get : fn() => null
@@ -33,6 +38,6 @@ class Box extends Model
 
     public function organizations()
     {
-
+        return $this->belongsToMany(Organization::class);
     }
 }

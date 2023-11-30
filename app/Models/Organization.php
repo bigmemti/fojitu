@@ -15,11 +15,11 @@ class Organization extends Model
 
     public function tickets()
     {
-
+        $this->hasMany(Ticket::class);
     }
 
     public function boxes()
     {
-
+        $this->hasMany(Box::class);
     }
 }
