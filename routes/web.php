@@ -1,12 +1,16 @@
 <?php
 
+use App\Models\Ticket;
+use App\Models\Organization;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BoxController;
 use App\Http\Controllers\MimeController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StudentController;
@@ -18,9 +22,8 @@ use App\Http\Controllers\CourseListController;
 use App\Http\Controllers\CurriculumController;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\InstitutionController;
+use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\TeacherRequestController;
-use App\Http\Controllers\TicketController;
-use App\Models\Ticket;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +71,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('course.member', MemberController::class)->shallow();
 
     Route::resource('box.ticket' , TicketController::class)->shallow();
+
+    Route::resource('organization' , OrganizationController::class , ['except' => ['show']]);
+    Route::resource('organization.box' , BoxController::class)->shallow();
+
 });
 
 require __DIR__.'/auth.php';

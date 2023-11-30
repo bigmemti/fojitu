@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ticket;
 use App\Models\Organization;
 use App\Http\Requests\StoreOrganizationRequest;
 use App\Http\Requests\UpdateOrganizationRequest;
+use App\Models\User;
 
 class OrganizationController extends Controller
 {
@@ -13,7 +15,7 @@ class OrganizationController extends Controller
      */
     public function index()
     {
-        //
+        return view('organization.index' , ['organizations' => Organization::all()]);
     }
 
     /**
@@ -21,7 +23,9 @@ class OrganizationController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+
+        return view('organization.create' , ['users' => $users]);
     }
 
     /**
@@ -29,7 +33,10 @@ class OrganizationController extends Controller
      */
     public function store(StoreOrganizationRequest $request)
     {
-        //
+
+        Organization::create($request->validated());
+
+        return to_route('organization.index')->withSuccess(__('organization created successfully.'));
     }
 
     /**
@@ -45,7 +52,8 @@ class OrganizationController extends Controller
      */
     public function edit(Organization $organization)
     {
-        //
+        return view('organization.edit' , ['organization' => $organization]);
+
     }
 
     /**
@@ -53,7 +61,9 @@ class OrganizationController extends Controller
      */
     public function update(UpdateOrganizationRequest $request, Organization $organization)
     {
-        //
+        $organization->update($request->validated());
+
+        return to_route('organization.index')->withSuccess(__('organization edited successfully.'));
     }
 
     /**
@@ -61,6 +71,10 @@ class OrganizationController extends Controller
      */
     public function destroy(Organization $organization)
     {
-        //
+        $organization->delete();
+
+        return to_route('organization.index')->withSuccess(__('organization deleted successfully.'));
+
     }
+
 }
