@@ -22,6 +22,7 @@ use App\Http\Controllers\CourseListController;
 use App\Http\Controllers\CurriculumController;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\InstitutionController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\TeacherRequestController;
 
@@ -71,9 +72,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('course.member', MemberController::class)->shallow();
 
     Route::resource('box.ticket' , TicketController::class)->shallow();
-
-    Route::resource('organization' , OrganizationController::class , ['except' => ['show']]);
+    Route::resource('organization' , OrganizationController::class);
     Route::resource('organization.box' , BoxController::class)->shallow();
+    Route::resource('ticket.message' , MessageController::class)->shallow();
 
 });
 

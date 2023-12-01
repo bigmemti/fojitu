@@ -12,7 +12,7 @@
                     @can('create', App\Models\Ticket::class)
                         <div class="my-2">
                             <x-button :href="route('organization.box.create' , ['organization' => $organization])" type="create">
-                                <i class="fa fa-plus text-sm"></i> {{ __('Add new user to organization') }}
+                                <i class="fa fa-plus text-sm"></i> {{ __('Add to organization') }}
                             </x-button>
                         </div>
                     @endcan

@@ -590,6 +590,62 @@ class PermissionSeeder extends Seeder
                 "name"=> "force-delete-topic",
                 "namespace" => "model.topic",
             ],
+            [
+                "name"=> "view-list-organization",
+                "namespace" => "model.organization",
+            ],
+            [
+                "name"=> "view-organization",
+                "namespace" => "model.organization",
+            ],
+            [
+                "name"=> "create-organization",
+                "namespace" => "model.organization",
+            ],
+            [
+                "name"=> "update-organization",
+                "namespace" => "model.organization",
+            ],
+            [
+                "name"=> "delete-organization",
+                "namespace" => "model.organization",
+            ],
+            [
+                "name"=> "restore-organization",
+                "namespace" => "model.organization",
+            ],
+            [
+                "name"=> "force-delete-organization",
+                "namespace" => "model.organization",
+            ],
+            [
+                "name"=> "view-list-ticket",
+                "namespace" => "model.ticket",
+            ],
+            [
+                "name"=> "view-ticket",
+                "namespace" => "model.ticket",
+            ],
+            [
+                "name"=> "create-ticket",
+                "namespace" => "model.ticket",
+            ],
+            [
+                "name"=> "update-ticket",
+                "namespace" => "model.ticket",
+            ],
+            [
+                "name"=> "delete-ticket",
+                "namespace" => "model.ticket",
+            ],
+            [
+                "name"=> "restore-ticket",
+                "namespace" => "model.ticket",
+            ],
+            [
+                "name"=> "force-delete-ticket",
+                "namespace" => "model.ticket",
+            ],
             // [
             //     "name"=> "",
             //     "namespace" => "model.curriculum",

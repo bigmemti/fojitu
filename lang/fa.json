@@ -63,6 +63,17 @@
     "Remember me" : "مرا به خاطر داشته باش",
     "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one." : "رمز عبور خود را فراموش کرده اید؟ مشکلی نیست فقط آدرس ایمیل خود را به ما اطلاع دهید و ما یک پیوند بازنشانی رمز عبور را برای شما ایمیل می کنیم که به شما امکان می دهد رمز جدیدی را انتخاب کنید.",
     "Register" : "ثبت‌نام",
-
-    "Tickets" : "تیکت ها"
+    "members" : "اعضا",
+    "Tickets" : "تیکت ها",
+    "ticket edit" : "تغییر تیکت",
+    "Ticket List" : "لیست تیکت ها",
+    "Create new ticket" : "ساخت تیکت جدید",
+    "Create ticket" : "ساخت تیکت",
+    "Organizations" : "ارگان ها",
+    "Organ" : "ارگان",
+    "add user" : "اضافه کردن عضو",
+    "Organization edit" : "تغییرات ارگان",
+    "Organs List" : "لیست ارگان ها",
+    "Create new organization" : "ساخت ارگان جدید",
+    "Add to organization" : "اضافه کردن اعضای ارگان"
 }

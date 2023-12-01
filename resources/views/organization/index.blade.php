@@ -28,6 +28,7 @@
                                 <tr>
                                     <td class="text-center">{{$organization->name}}</td>
                                     <td class="py-4 text-center">
+                                        <x-button :href="route('organization.show',['organization' => $organization])" type="info"><i class="fa-light fa-eye"></i></x-button>
                                         @can('update', $organization)
                                             <x-button :href="route('organization.edit',['organization' => $organization])" type="edit"><i class="fa-light fa-pen"></i></x-button>
                                         @endcan
