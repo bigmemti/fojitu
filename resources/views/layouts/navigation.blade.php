@@ -12,14 +12,14 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 rtl:space-x-reverse sm:-my-px sm:ml-10 sm:rtl:mr-10 sm:flex">
-                    {{-- @foreach (trans('layout.menu') as $item)
+                     @foreach (trans('layout.menu') as $item)
                         @if (!isset($item['policy']) || (isset($item['policy']) && auth()->user()->can($item['policy']['method'], $item['policy']['model'])))
                             <x-nav-link :href="$item['route']" :active="$item['active']">
                                 {{ $item['title'] }}
                             </x-nav-link>
                         @endif
-                    @endforeach --}}
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    @endforeach 
+                    {{--<x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @can('viewAny', App\Models\Institution::class)
@@ -61,7 +61,7 @@
                         <x-nav-link :href="route('course.index')" :active="request()->routeIs('course.index')">
                             {{ __('Courses') }}
                         </x-nav-link>
-                    @endcan
+                    @endcan--}}
                 </div>
             </div>
 
