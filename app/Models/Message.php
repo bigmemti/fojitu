@@ -17,16 +17,16 @@ class Message extends Model
 
     public function box()
     {
-        $this->belongsTo(Box::class);
+        return $this->belongsTo(Box::class);
     }
 
     public function ticket()
     {
-        $this->belongsTo(Ticket::class);
+        return $this->belongsTo(Ticket::class);
     }
 
     public function files()
     {
-        $this->morphToMany(File::class , "fileable" , Fileable::class);
+        return $this->morphToMany(File::class , "fileable" , Fileable::class);
     }
 }

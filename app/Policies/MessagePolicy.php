@@ -21,7 +21,7 @@ class MessagePolicy
      */
     public function view(User $user, Message $message): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class MessagePolicy
      */
     public function update(User $user, Message $message): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -45,7 +45,7 @@ class MessagePolicy
      */
     public function delete(User $user, Message $message): bool
     {
-        //
+        return true;
     }
 
     /**

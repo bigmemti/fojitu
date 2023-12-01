@@ -33,7 +33,7 @@ class MessageController extends Controller
         $ticket->messages()->create([
             'message' => $request->message,
             'ticket_id' => $ticket->id,
-            'box_id' => $ticket->box_id
+            'box_id' => auth()->user()->box->id
         ]);
 
         return to_route('ticket.show', ['ticket' => $ticket] )->withSuccess(__('message was sent successfully.'));
@@ -50,9 +50,9 @@ class MessageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Message $message)
+    public function edit(Message $message , Ticket $ticket)
     {
-        //
+        return view('message.edit' , ['message'=>$message , 'ticket'=>$ticket]);
     }
 
     /**
@@ -60,7 +60,12 @@ class MessageController extends Controller
      */
     public function update(UpdateMessageRequest $request, Message $message)
     {
-        //
+        dd($message);
+        $message->update([
+            'message' => $request->message,
+        ]);
+
+        return to_route('ticket.show', ['ticket' => $message->ticket] )->withSuccess(__('message was sent successfully.'));
     }
 
     /**
@@ -68,6 +73,7 @@ class MessageController extends Controller
      */
     public function destroy(Message $message)
     {
-        //
+        $message->delete();
+        return to_route('ticket.show', ['ticket' => $message->ticket] )->withSuccess(__('message was sent successfully.'));
     }
 }
