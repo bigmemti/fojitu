@@ -31,6 +31,9 @@
                         </x-nav-link>
                     @endcan
                     @can('viewAny', App\Models\Type::class)
+                        <x-nav-link :href="route('type.index')" :active="request()->routeIs('type.index')">
+                            {{ __('Types') }}
+                        </x-nav-link>
                     @endcan
                     @can('viewAny', App\Models\TeacherRequest::class)
                         <x-nav-link :href="route('teacher_request.index')" :active="request()->routeIs('teacher_request.index')">
