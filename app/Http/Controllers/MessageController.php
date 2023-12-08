@@ -60,7 +60,6 @@ class MessageController extends Controller
      */
     public function update(UpdateMessageRequest $request, Message $message)
     {
-        dd($message);
         $message->update([
             'message' => $request->message,
         ]);

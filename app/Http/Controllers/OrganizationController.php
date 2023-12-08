@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Box;
+use App\Models\User;
 use App\Models\Ticket;
 use App\Models\Organization;
 use App\Http\Requests\StoreOrganizationRequest;
 use App\Http\Requests\UpdateOrganizationRequest;
-use App\Models\User;
 
 class OrganizationController extends Controller
 {
@@ -44,7 +45,11 @@ class OrganizationController extends Controller
      */
     public function show(Organization $organization)
     {
-        return view('organization.show' , ['organization' => $organization]);
+        $boxes = Box::whereHas("organizations" , function($query) use ($organization) {
+            $query->where("organization_id" , $organization->id);
+        })->get();
+
+        return view('organization.show' , ['organization' => $organization , 'boxes'=>$boxes]);
     }
 
     /**
@@ -52,7 +57,10 @@ class OrganizationController extends Controller
      */
     public function edit(Organization $organization)
     {
-        return view('organization.edit' , ['organization' => $organization]);
+
+        $boxes = Box::all();
+
+        return view('organization.edit' , ['organization' => $organization , 'boxes' => $boxes]);
 
     }
 

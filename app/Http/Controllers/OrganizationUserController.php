@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Box;
-use App\Http\Requests\StoreBoxRequest;
-use App\Http\Requests\UpdateBoxRequest;
 use App\Models\Organization;
+use Illuminate\Http\Request;
+use App\Http\Requests\StoreBoxRequest;
 
-class BoxController extends Controller
+class OrganizationUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +26,7 @@ class BoxController extends Controller
             $query->where("organization_id" , $organization->id);
         })->get();
 
-        return view('box.create' , ['boxes' => $boxes , 'organization' => $organization]);
+        return view('organization-user.create' , ['boxes' => $boxes , 'organization' => $organization]);
     }
 
     /**
@@ -36,13 +36,13 @@ class BoxController extends Controller
     {
         $organization->boxes()->attach($request->box);
 
-        return to_route('organization.index')->withSuccess(__('organization created successfully.'));
+        return to_route('organization.show',['organization' => $organization])->withSuccess(__('organization created successfully.'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Box $box)
+    public function show()
     {
         //
     }
@@ -50,15 +50,19 @@ class BoxController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Box $box)
+    public function edit(Organization $organization)
     {
-        //
+        $boxes = Box::whereHas("organizations" , function($query) use ($organization) {
+            $query->where("organization_id" , $organization->id);
+        })->get();
+
+        return view('organization-user.edit' , ['boxes' => $boxes , 'organization' => $organization]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBoxRequest $request, Box $box)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -66,7 +70,7 @@ class BoxController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Box $box)
+    public function destroy(string $id)
     {
         //
     }

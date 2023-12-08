@@ -38,6 +38,6 @@ class Box extends Model
 
     public function organizations()
     {
-        return $this->hasMany(Organization::class);
+        return $this->belongsToMany(Organization::class);
     }
 }

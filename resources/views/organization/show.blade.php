@@ -9,10 +9,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    @can('create', App\Models\Ticket::class)
+                    @can('create', App\Models\Organization::class)
                         <div class="my-2">
                             <x-button :href="route('organization.box.create' , ['organization' => $organization])" type="create">
                                 <i class="fa fa-plus text-sm"></i> {{ __('Add to organization') }}
+                            </x-button>
+                            <x-button :href="route('organization-users.edit' , ['organization' => $organization])" type="edit">
+                                <i class="fa fa-plus text-sm"></i> {{ __('delete from organization') }}
                             </x-button>
                         </div>
                     @endcan
@@ -28,7 +31,7 @@
                                 <tr>
                                     <td class="text-center">{{$organization->name}}</td>
                                     <td class="py-4 text-center">
-                                        @foreach ($organization->boxes as $box )
+                                        @foreach ($boxes as $box )
                                             ,{{$box->user->name}}
                                         @endforeach
                                     </td>

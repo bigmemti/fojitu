@@ -13,7 +13,7 @@ class OrganizationPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasPermission('view-list-organization');
+        return $user->hasPermission('full-access-organization');
     }
 
     /**
@@ -21,7 +21,7 @@ class OrganizationPolicy
      */
     public function view(User $user, Organization $organization): bool
     {
-        return $user->hasPermission('view-organization');
+        return $user->hasPermission('full-access-organization');
     }
 
     /**
@@ -29,7 +29,7 @@ class OrganizationPolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasPermission('create-organization');
+        return $user->hasPermission('full-access-organization');
     }
 
     /**
@@ -37,7 +37,7 @@ class OrganizationPolicy
      */
     public function update(User $user, Organization $organization): bool
     {
-        return $user->hasPermission('update-organization');
+        return $user->hasPermission('full-access-organization');
     }
 
     /**
@@ -45,7 +45,7 @@ class OrganizationPolicy
      */
     public function delete(User $user, Organization $organization): bool
     {
-        return $user->hasPermission('delete-organization');
+        return $user->hasPermission('full-access-organization');
     }
 
     /**
@@ -53,7 +53,7 @@ class OrganizationPolicy
      */
     public function restore(User $user, Organization $organization): bool
     {
-        return $user->hasPermission('restore-organization');
+        return $user->hasPermission('full-access-organization');
 
     }
 
@@ -62,7 +62,7 @@ class OrganizationPolicy
      */
     public function forceDelete(User $user, Organization $organization): bool
     {
-        return $user->hasPermission('force-delete-organization');
+        return $user->hasPermission('full-access-organization');
 
     }
 }

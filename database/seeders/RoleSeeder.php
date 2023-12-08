@@ -28,5 +28,10 @@ class RoleSeeder extends Seeder
             'is_flexible' => 1,
             'is_appointable' => 0,
         ]);
+        Role::create([
+            "name"=> "user",
+            'is_flexible' => 1,
+            'is_appointable' => 1,
+        ]);
     }
 }

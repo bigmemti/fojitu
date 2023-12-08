@@ -13,7 +13,8 @@ class TicketPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasPermission('view-list-ticket');
+        // return $user->hasPermission('view-list-ticket');
+        return true;
     }
 
     /**
@@ -21,7 +22,9 @@ class TicketPolicy
      */
     public function view(User $user, Ticket $ticket): bool
     {
-        return $user->hasPermission('view-ticket');
+        // return $user->hasPermission('view-ticket');
+        return true;
+
     }
 
     /**
@@ -29,7 +32,9 @@ class TicketPolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasPermission('create-ticket');
+        // return $user->hasPermission('create-ticket');
+        return true;
+
     }
 
     /**
@@ -37,7 +42,9 @@ class TicketPolicy
      */
     public function update(User $user, Ticket $ticket): bool
     {
-        return $user->hasPermission('update-ticket');
+        // return $user->hasPermission('update-ticket');
+        return true;
+
     }
 
     /**
@@ -45,7 +52,9 @@ class TicketPolicy
      */
     public function delete(User $user, Ticket $ticket): bool
     {
-        return $user->hasPermission('delete-ticket');
+        // return $user->hasPermission('delete-ticket');
+        return true;
+
     }
 
     /**
@@ -53,7 +62,9 @@ class TicketPolicy
      */
     public function restore(User $user, Ticket $ticket): bool
     {
-        return $user->hasPermission('restore-ticket');
+        // return $user->hasPermission('restore-ticket');
+        return true;
+
     }
 
     /**
@@ -61,6 +72,8 @@ class TicketPolicy
      */
     public function forceDelete(User $user, Ticket $ticket): bool
     {
-        return $user->hasPermission('force-delete-ticket');
+        // return $user->hasPermission('force-delete-ticket');
+        return true;
+
     }
 }

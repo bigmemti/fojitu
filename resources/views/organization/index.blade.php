@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    @can('create', App\Models\Ticket::class)
+                    @can('create', App\Models\Organization::class)
                         <div class="my-2">
                             <x-button :href="route('organization.create')" type="create">
                                 <i class="fa fa-plus text-sm"></i> {{ __('Create new organization') }}

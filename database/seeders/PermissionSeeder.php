@@ -591,6 +591,10 @@ class PermissionSeeder extends Seeder
                 "namespace" => "model.topic",
             ],
             [
+                "name"=> "full-access-organization",
+                "namespace" => "model.organization",
+            ],
+            [
                 "name"=> "view-list-organization",
                 "namespace" => "model.organization",
             ],

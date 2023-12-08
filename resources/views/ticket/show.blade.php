@@ -45,6 +45,7 @@
                                             </td>
                                         @else
                                             <td class="text-right" style="color: blue">{{$message->message}}</td>
+                                            <td></td>
                                         @endif
                                     </tr>
                                 @endforeach

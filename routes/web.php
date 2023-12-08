@@ -1,9 +1,6 @@
 <?php
 
-use App\Models\Ticket;
-use App\Models\Organization;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BoxController;
 use App\Http\Controllers\MimeController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\MajorController;
@@ -11,6 +8,7 @@ use App\Http\Controllers\TopicController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StudentController;
@@ -22,9 +20,12 @@ use App\Http\Controllers\CourseListController;
 use App\Http\Controllers\CurriculumController;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\InstitutionController;
-use App\Http\Controllers\MessageController;
+use App\Http\Controllers\OrganizationAddUserController;
 use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\OrganizationDeleteUserController;
+use App\Http\Controllers\OrganizationUserController;
 use App\Http\Controllers\TeacherRequestController;
+use App\Models\Organization;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,9 +74,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('box.ticket' , TicketController::class)->shallow();
     Route::resource('organization' , OrganizationController::class);
-    Route::resource('organization.box' , BoxController::class)->shallow();
     Route::resource('ticket.message' , MessageController::class)->shallow();
-
+    Route::resource('organization.box' , OrganizationUserController::class)->only('store','create')->shallow();
+    Route::get('organization-users/{organization}',[OrganizationDeleteUserController::class , 'edit'])->name('organization-users.edit');
+    Route::patch('organization-users/{organization}/delete',[OrganizationDeleteUserController::class , 'update'])->name('organization-users.delete');
 });
+
 
 require __DIR__.'/auth.php';
