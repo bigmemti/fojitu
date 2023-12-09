@@ -20,12 +20,10 @@ use App\Http\Controllers\CourseListController;
 use App\Http\Controllers\CurriculumController;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\InstitutionController;
-use App\Http\Controllers\OrganizationAddUserController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\OrganizationDeleteUserController;
 use App\Http\Controllers\OrganizationUserController;
 use App\Http\Controllers\TeacherRequestController;
-use App\Models\Organization;
 
 /*
 |--------------------------------------------------------------------------
