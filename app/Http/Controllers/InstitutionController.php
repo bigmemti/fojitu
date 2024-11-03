@@ -14,7 +14,7 @@ class InstitutionController extends Controller
     public function index()
     {
         return view("institution.index", [
-            "institutions"=> Institution::all()
+            "institutions"=> Institution::all() 
         ]);
     }
 

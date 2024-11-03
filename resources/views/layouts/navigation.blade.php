@@ -45,6 +45,18 @@
                             {{ __('Teaching Courses') }}
                         </x-nav-link>
                     @endcan
+
+                    @can('viewAny' , App\Models\Organization::class)
+                        <x-nav-link :href="route('organization.index')" :active="request()->routeIs('organization.index')">
+                            {{ __('Organizations') }}
+                        </x-nav-link>
+                    @endcan
+
+                    {{--  --}}
+                    <x-nav-link :href="route('box.ticket.index' ,['box' => auth()->user()->box])" :active="request()->routeIs('box.ticket.index' , ['box' => auth()->user()->box])">
+                        {{ __('Tickets') }}
+                    </x-nav-link>
+                    {{--  --}}
                     @can('viewStudyingCourse', App\Model\Course::class)
                         <x-nav-link :href="route('curriculum.course.index',['curriculum' => auth()->user()->student->curriculum])" :active="request()->routeIs('curriculum.course.index',['curriculum' => auth()->user()->student->curriculum])">
                             {{ __('Studying Courses') }}
